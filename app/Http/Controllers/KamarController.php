@@ -159,6 +159,7 @@ class KamarController extends Controller
     public function show($id)
     {
         $kamar = Kamar::with('penyewa', 'pictures')->findOrFail($id);
-        return view('kamars.show', compact('kamar'));
+        $inventories = $kamar->inventories;
+        return view('kamars.show', compact('kamar','inventories'));
     }
 }

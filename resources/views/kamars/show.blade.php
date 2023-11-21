@@ -14,9 +14,28 @@
                         <p><strong>Price:</strong> {{ $kamar->harga_kamar }}</p>
                         <p><strong>Penyewa:</strong> {{ $kamar->penyewa ? $kamar->penyewa->nama : 'Not Assigned' }}</p>
                         <p><strong>Inventaris Kamar:</strong>
-                            <div>
-                                
-                            </div>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Nama Barang</th>
+                                        <th>Tanggal Beli</th>
+                                        <th>Kondisi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @forelse ($inventories as $inventory)
+                                        <tr>
+                                            <td>{{ $inventory->nama }}</td>
+                                            <td>{{ $inventory->tanggal_pembelian }}</td>
+                                            <td>{{ $inventory->kondisi }}</td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="3">Tidak ada inventaris untuk kamar ini.</td>
+                                        </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
                         </p>
                         <p><strong>Pictures:</strong></p>
                         <div class="row">

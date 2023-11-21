@@ -30,4 +30,8 @@ class Kamar extends Model
     {
         return $this->penyewa ? 'Terisi' : 'Belum Terisi';
     }
+    public function inventories()
+{
+    return $this->hasMany(Inventory::class, 'nomor_kamar', 'nomor_kamar');
+}
 }
