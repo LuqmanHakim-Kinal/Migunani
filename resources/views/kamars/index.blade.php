@@ -18,7 +18,7 @@
                                         <th>Price</th>
                                         <th>Luas Kamar</th>
                                         <th>Actions</th>
-                                    </tr>
+                                    </tr> 
                                 </thead>
                                 <tbody>
                                     @foreach ($kamars as $kamar)
