@@ -13,6 +13,8 @@ class Kamar extends Model
         'nomor_kamar',
         'status_kamar',
         'harga_kamar',
+        'panjang_kamar',
+        'lebar_kamar',
     ];
 
     public function penyewa()

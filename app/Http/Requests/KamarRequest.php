@@ -21,6 +21,8 @@ class KamarRequest extends FormRequest
                 'harga_kamar'   => 'required|numeric',
                 'penyewa_id'    => 'nullable|exists:penyewas,id',
                 'files'         => 'nullable',
+                'panjang_kamar' => 'nullable',
+                'lebar_kamar' => 'nullable',
             ];
         } 
         // Jika metode request adalah PUT atau PATCH (update)

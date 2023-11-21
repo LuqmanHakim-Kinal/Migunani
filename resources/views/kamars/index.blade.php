@@ -16,6 +16,7 @@
                                         <th>Room Number</th>
                                         <th>Status</th>
                                         <th>Price</th>
+                                        <th>Luas Kamar</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -25,6 +26,7 @@
                                             <td>{{ $kamar->nomor_kamar }}</td>
                                             <td>{{ $kamar->status_kamar }}</td>
                                             <td>Rp.{{ $kamar->harga_kamar }}</td>
+                                            <td>{{ $kamar->panjang_kamar }}M X {{ $kamar->lebar_kamar}}M</td> 
                                             <td>
                                                 <a href="{{ route('kamars.show', $kamar->id) }}" class="btn btn-info">View</a>
                                                 <a href="{{ route('kamars.edit', $kamar->id) }}" class="btn btn-warning">Edit</a>

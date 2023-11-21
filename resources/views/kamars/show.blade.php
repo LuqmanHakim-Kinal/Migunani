@@ -12,7 +12,12 @@
                         <p><strong>Room Number:</strong> {{ $kamar->nomor_kamar }}</p>
                         <p><strong>Status:</strong> {{ $kamar->status }}</p>
                         <p><strong>Price:</strong> {{ $kamar->harga_kamar }}</p>
-                        <p><strong>Tenant:</strong> {{ $kamar->penyewa ? $kamar->penyewa->nama : 'Not Assigned' }}</p>
+                        <p><strong>Penyewa:</strong> {{ $kamar->penyewa ? $kamar->penyewa->nama : 'Not Assigned' }}</p>
+                        <p><strong>Inventaris Kamar:</strong>
+                            <div>
+                                
+                            </div>
+                        </p>
                         <p><strong>Pictures:</strong></p>
                         <div class="row">
                             @foreach ($kamar->pictures as $picture)

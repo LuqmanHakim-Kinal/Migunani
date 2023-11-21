@@ -32,6 +32,12 @@
                                 <!-- Add a min attribute to enforce a non-negative value -->
                             </div>
                             <div class="form-group">
+                                <label for="harga_kamar">Luas Kamar:</label>
+                                <input type="number" name="panjang_kamar" class="form-control" required min="0" placeholder="Panjang">
+                                <input type="number" name="lebar_kamar" class="form-control" required min="0" placeholder="Lebar">
+                                <!-- Add a min attribute to enforce a non-negative value -->
+                            </div>
+                            <div class="form-group">
                                 <label for="penyewa_id">Penyewa:</label>
                                 <select name="penyewa_id" class="form-control">
                                     <option value="" selected>Kamar Kosong(Isi Jika Ada Yang Sewa)</option>

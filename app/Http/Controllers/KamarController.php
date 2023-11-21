@@ -25,11 +25,15 @@ class KamarController extends Controller
 
     public function store(KamarRequest $request)
     {
+        //dd($request->all());
         try {
             $kamar = new Kamar([
                 'nomor_kamar'   => $request->nomor_kamar,
                 'status_kamar'  => $request->penyewa_id == null ? 'Belum Terisi' : 'Terisi',
                 'harga_kamar'   => $request->harga_kamar,
+                'panjang_kamar' => $request->panjang_kamar,
+                'lebar_kamar'   => $request->lebar_kamar,
+
             ]);
 
             $kamar->save();
