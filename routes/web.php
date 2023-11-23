@@ -30,6 +30,14 @@ route::get('/penyewa/{id}/edit',[\App\Http\Controllers\PenyewaController::class,
 route::put('/penyewa/{id}',[\App\Http\Controllers\PenyewaController::class,'update']);
 route::delete('/penyewa/{id}',[\App\Http\Controllers\PenyewaController::class,'destroy']);
 
+//calonPenyewa
+route::get('/calonpenyewa',[\App\Http\Controllers\CalonpenyewaController::class,'index']);
+route::post('/calonpenyewa',[\App\Http\Controllers\CalonpenyewaController::class,'store']);
+route::get('/calonpenyewa/create',[\App\Http\Controllers\CalonpenyewaController::class,'create']);
+route::get('/calonpenyewa/{id}/edit',[\App\Http\Controllers\CalonpenyewaController::class,'edit']);
+route::put('/calonpenyewa/{id}',[\App\Http\Controllers\CalonpenyewaController::class,'update']);
+route::delete('/calonpenyewa/{id}',[\App\Http\Controllers\CalonpenyewaController::class,'destroy']);
+
 //kamar
 route::get('/kamars',[\App\Http\Controllers\KamarController::class,'index'])->name('kamars.index');
 route::post('/kamars',[\App\Http\Controllers\KamarController::class,'store'])->name('kamars.store');

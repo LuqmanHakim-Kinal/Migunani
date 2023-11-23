@@ -243,7 +243,19 @@
                         <ul aria-expanded="false">
                             <li><a href="/penyewa">Data Penyewa</a></li>
                             <li><a href="/penyewa/create">Tambah Penyewa</a></li>
+                            <li><a href="/calonpenyewa">Data Calon Penyewa</a></li>
+                            <li><a href="/calonpenyewa/create">Tambah Calon Penyewa</a></li>
                             <li><a href="{{ asset('/assets/layout-two-column.html')}}">Two column</a></li>
+                        </ul>
+                    </li>
+                    <li class="mega-menu mega-menu-sm">
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-globe-alt menu-icon"></i><span class="nav-text">Pembayaran</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="#">Data Pembayaran</a></li>
+                            <li><a href="#">Bayar</a></li>
+                            <li><a href="#">Two column</a></li>
                         </ul>
                     </li>
                     <li class="mega-menu mega-menu-sm">
@@ -264,16 +276,6 @@
                             <li><a href="/inventaris">Data Inventaris</a></li>
                             <li><a href="/inventaris/create">Tambah Inventaris</a></li>
                             <li><a href="{{ asset('/assets/layout-two-column.html')}}">Two column</a></li>
-                        </ul>
-                    </li>
-                    <li class="mega-menu mega-menu-sm">
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="icon-globe-alt menu-icon"></i><span class="nav-text">Pembayaran</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="#">Data Pembayaran</a></li>
-                            <li><a href="#">Bayar</a></li>
-                            <li><a href="#">Two column</a></li>
                         </ul>
                     </li>
                 </ul>

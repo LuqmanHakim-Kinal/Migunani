@@ -18,4 +18,8 @@ class Picture extends Model
     {
         return $this->belongsTo(Inventory::class);
     }
+    public function calonpenyewa()
+    {
+        return $this->belongsTo(CalonPenyewa::class);
+    }
 }
