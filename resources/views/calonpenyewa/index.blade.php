@@ -39,6 +39,10 @@
                                                 @csrf
                                                 <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?')">Hapus</button>
                                             </form>
+                                            <form action="{{ route('transferCalonPenyewaToPenyewa') }}" method="post">
+                                                @csrf
+                                                <button type="submit" class="btn btn-primary">Transfer Data</button>
+                                            </form>
                                             
 
                                         </td>

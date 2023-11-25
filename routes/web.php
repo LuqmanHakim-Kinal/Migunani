@@ -38,6 +38,11 @@ route::get('/calonpenyewa/{id}/edit',[\App\Http\Controllers\CalonpenyewaControll
 route::put('/calonpenyewa/{id}',[\App\Http\Controllers\CalonpenyewaController::class,'update']);
 route::delete('/calonpenyewa/{id}',[\App\Http\Controllers\CalonpenyewaController::class,'destroy']);
 
+//calonpenyewa-transfer
+
+Route::get('/transfer', [\App\Http\Controllers\CalonpenyewaController::class, 'index'])->name('transfer.index');
+Route::post('/transfer', [\App\Http\Controllers\CalonpenyewaController::class, 'transferCalonPenyewaToPenyewa'])->name('transferCalonPenyewaToPenyewa');
+
 //kamar
 route::get('/kamars',[\App\Http\Controllers\KamarController::class,'index'])->name('kamars.index');
 route::post('/kamars',[\App\Http\Controllers\KamarController::class,'store'])->name('kamars.store');

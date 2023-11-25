@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Calonpenyewa;
 use App\Models\Picture;
+use App\Models\Penyewa;
 use Illuminate\Http\Request;
+
 
 
 class CalonPenyewaController extends Controller
@@ -93,5 +95,27 @@ class CalonPenyewaController extends Controller
         $calonpenyewa->delete();
 
         return redirect('/calonpenyewa')->with('success', 'Data Has Been Deleted');
+    }
+    public function transferCalonPenyewaToPenyewa()
+    {
+        // Ambil semua data calon penyewa
+        $calonPenyewas = CalonPenyewa::all();
+
+        // Simpan data ke penyewas
+        foreach ($calonPenyewas as $calonPenyewa) {
+            Penyewa::create([
+                'nama' => $calonPenyewa->nama,
+                'no_hp' => $calonPenyewa->no_hp,
+                'alamat' => 'Alamat Default', // Sesuaikan dengan alamat default yang diinginkan
+                'tanggal_masuk' => $calonPenyewa->tanggal_masuk,
+                'tanggal_selesai' => now(), // Sesuaikan dengan tanggal selesai default yang diinginkan
+            ]);
+
+            // Hapus data dari calonpenyewas setelah disimpan
+            $calonPenyewa->delete();
+        }
+
+        // Berikan respons atau redirect sesuai kebutuhan
+        return redirect('/penyewa')->with('success', 'Data Has Been Deleted');
     }
 }
