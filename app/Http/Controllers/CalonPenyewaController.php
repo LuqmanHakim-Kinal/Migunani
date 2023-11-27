@@ -116,6 +116,6 @@ class CalonPenyewaController extends Controller
         }
 
         // Berikan respons atau redirect sesuai kebutuhan
-        return redirect('/penyewa')->with('success', 'Data Has Been Deleted');
+        return redirect('/penyewa')->with('success', 'Data Has Been Deleted'); 
     }
 }

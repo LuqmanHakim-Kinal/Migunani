@@ -66,4 +66,6 @@ route::delete('/keluhans/{id}',[\App\Http\Controllers\KeluhanController::class,'
 route::get('/inventaris',[\App\Http\Controllers\InventarisController::class,'index'])->name('inventaris.index');
 route::get('/inventaris/create',[\App\Http\Controllers\InventarisController::class,'create'])->name('inventaris.create');
 route::post('/inventaris',[\App\Http\Controllers\InventarisController::class,'store'])->name('inventaris.store');
+route::get('/inventaris/{id}/edit',[\App\Http\Controllers\InventarisController::class,'edit'])->name('inventaris.edit');
+route::put('/inventaris/{id}',[\App\Http\Controllers\InventarisController::class,'update'])->name('inventaris.update');
 route::delete('/inventaris/{id}',[\App\Http\Controllers\InventarisController::class,'destroy'])->name('inventaris.destroy');

@@ -67,6 +67,26 @@ class InventarisController extends Controller
             return redirect()->route('inventaris.create')->withInput()->with('error', 'Error adding inventory. Please try again. ' . $e->getMessage());
         }
     }
+    public function edit($id)
+    {
+        $inventory = Inventory::find($id);
+        return view('inventaris.edit', compact('inventory'));
+    }
+    public function update(Request $request, $id)
+    {
+        //dd($request->all());
+        $request->validate([
+            'kondisi' => 'required|in:Baik,Rusak',
+        ]);
+
+        $inventory = Inventory::findOrFail($id);
+
+        $inventory->update([
+            'kondisi' => $request->kondisi,
+        ]);
+
+        return redirect()->route('inventaris.index')->with('success', 'Status inventaris berhasil diperbarui.');
+    }
     public function destroy($id)
     {
         $inventaris = Inventory::findOrFail($id);

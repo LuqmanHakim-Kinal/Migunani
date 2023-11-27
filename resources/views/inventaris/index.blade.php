@@ -41,6 +41,7 @@
                             @endif
                         </td>
                         <td>
+                            <a href="{{ route('inventaris.edit', $inventory->id) }}" class="btn btn-warning">Edit</a>
                             <form action="{{ route('inventaris.destroy', $inventory->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
