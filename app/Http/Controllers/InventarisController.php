@@ -69,8 +69,9 @@ class InventarisController extends Controller
     }
     public function edit($id)
     {
-        $inventory = Inventory::find($id);
-        return view('inventaris.edit', compact('inventory'));
+        $inventory = Inventory::findOrFail($id);
+        $kamars = Kamar::all(); 
+        return view('inventaris.edit', compact('inventory', 'kamars'));
     }
     public function update(Request $request, $id)
     {
