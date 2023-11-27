@@ -77,7 +77,7 @@ class InventarisController extends Controller
     {
         //dd($request->all());
         $request->validate([
-            'kondisi' => 'required|in:Baik,Rusak',
+            'kondisi'       => 'required|in:Baik,Rusak',
         ]);
 
         $inventory = Inventory::findOrFail($id);
@@ -89,6 +89,7 @@ class InventarisController extends Controller
 
         $inventory->update([
             'kondisi' => $request->kondisi,
+
         ]);
 
         return redirect()->route('inventaris.index')->with('success', 'Status inventaris berhasil diperbarui.');
