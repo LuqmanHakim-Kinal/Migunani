@@ -13,6 +13,7 @@
         </div>
         @endif
         <form action="/inventaris/{{$inventory->id  }}" method="POST" enctype="multipart/form-data">
+            @method('put')
             @csrf
             <div class="mb-3">
                 <label for="nama" class="form-label">Nama Barang:</label>
@@ -25,7 +26,7 @@
             <div class="mb-3">
                 <label for="tempat" class="form-label">Tempat/Letak:</label>
                 <select name="tempat" class="form-control" aria-placeholder="{{ $inventory->nomor_kamar }}" >
-                    <option value="" selected>Pilih Tempat/Letak</option>
+                    <option value="" selected>{{ $inventory->nomor_kamar }}</option>
                     @foreach ($kamars as $kamar)
                         <option value="{{ $kamar->nomor_kamar }}">{{ $kamar->nomor_kamar }}</option>
                     @endforeach

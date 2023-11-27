@@ -81,6 +81,11 @@ class InventarisController extends Controller
         ]);
 
         $inventory = Inventory::findOrFail($id);
+        if ($request->has('tempat')) {
+            $inventory->nomor_kamar = $request->tempat;
+        }
+
+        $inventory->save();
 
         $inventory->update([
             'kondisi' => $request->kondisi,
