@@ -81,17 +81,30 @@ class InventarisController extends Controller
         ]);
 
         $inventory = Inventory::findOrFail($id);
-        if ($request->has('tempat')) {
-            $inventory->nomor_kamar = $request->tempat;
-        }
-
-        $inventory->save();
-
         $inventory->update([
+            'nama' => $request->nama,
+            'tanggal_pembelian' => $request->tanggal_beli,
             'kondisi' => $request->kondisi,
-
         ]);
 
+        if ($request->has('tempat')) {
+            $inventory->nomor_kamar = $request->tempat;
+        } else {
+            $inventory->nomor_kamar = null;
+        }
+        $inventory->save();
+        if ($request->hasFile('files')) {
+            foreach ($request->file('files') as $file) {
+                $filename = time() . rand(1, 200) . '.' . $file->extension();
+                $file->move(public_path('uploads/inventory'), $filename, 'public');
+
+                Picture::create([
+                    'inventory_id' => $inventory->id,
+                    'filename' => $filename,
+                ]);
+            }
+        }
+       
         return redirect()->route('inventaris.index')->with('success', 'Status inventaris berhasil diperbarui.');
     }
     public function destroy($id)
