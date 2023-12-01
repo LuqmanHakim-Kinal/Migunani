@@ -33,7 +33,7 @@
                                             @endif                      
                                           </td>
                                         <td>
-                                            <a href="/penyewa/{{$penyewa->id}}/edit" class="btn btn-sm btn-warning">Edit</a>
+                                            <a href="{{ route('penyewa.show', $penyewa->id) }}" class="btn btn-info">View</a>
                                             <form action="/penyewa/{{ $penyewa->id }}" method="POST">
                                                 @method("DELETE")
                                                 @csrf

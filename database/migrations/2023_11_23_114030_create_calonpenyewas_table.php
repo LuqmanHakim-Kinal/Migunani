@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nama');
             $table->string('no_hp');
             $table->date('tanggal_masuk');
-            $table->decimal('dp')->nullable();
+            $table->decimal('dp',10)->nullable();
             $table->timestamps();
         });
     }
