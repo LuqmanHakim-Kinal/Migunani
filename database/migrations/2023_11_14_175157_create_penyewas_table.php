@@ -18,6 +18,8 @@ return new class extends Migration
             $table->text('alamat');
             $table->date('tanggal_masuk');
             $table->date('tanggal_selesai');
+            $table->decimal('dp',10)->nullable();
+            $table->string('nomor_kamar')->nullable();
             $table->timestamps();
         });
     }

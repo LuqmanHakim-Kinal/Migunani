@@ -28,7 +28,7 @@ class CalonPenyewaController extends Controller
             'nama'            => 'required|min:8',
             'no_hp'           => 'required|numeric',
             'tanggal_masuk'   => 'required|date',
-            'dp'              => 'numeric',
+            'dp'              => 'numeric|min:8',
         ]);
         $calonpenyewa = Calonpenyewa::create([
             'nama'            => $request->nama,
@@ -36,15 +36,18 @@ class CalonPenyewaController extends Controller
             'tanggal_masuk'   => $request->tanggal_masuk,
             'dp'              => $request->dp,
         ]);
-        foreach ($request->file('files') as $file)
+        if ($request->hasFile('files'))
         {
-            $filename=time().rand(1,200).'.'.$file->extension();
-            $file->move(public_path('uploads/calonpenyewa'),$filename);
-            Picture::create([
-                'calonpenyewa_id'=> $calonpenyewa->id,
-                'filename'=> $filename
-            ]);
-        
+            foreach ($request->file('files') as $file)
+            {
+                $filename=time().rand(1,200).'.'.$file->extension();
+                $file->move(public_path('uploads/calonpenyewa'),$filename);
+                Picture::create([
+                    'calonpenyewa_id'=> $calonpenyewa->id,
+                    'filename'=> $filename
+                ]);
+            
+            }
         }
 
         return redirect('/calonpenyewa')->with('success', 'Data Has Been Uploaded');
@@ -104,11 +107,12 @@ class CalonPenyewaController extends Controller
         // Simpan data ke penyewas
         foreach ($calonPenyewas as $calonPenyewa) {
             Penyewa::create([
-                'nama' => $calonPenyewa->nama,
-                'no_hp' => $calonPenyewa->no_hp,
-                'alamat' => 'Alamat Default', // Sesuaikan dengan alamat default yang diinginkan
-                'tanggal_masuk' => $calonPenyewa->tanggal_masuk,
-                'tanggal_selesai' => now(), // Sesuaikan dengan tanggal selesai default yang diinginkan
+                'nama'            => $calonPenyewa->nama,
+                'no_hp'           => $calonPenyewa->no_hp,
+                'alamat'          => 'Alamat Default',
+                'tanggal_masuk'   => $calonPenyewa->tanggal_masuk,
+                'tanggal_selesai' => now(), 
+                'dp'              => $calonPenyewa->dp,
             ]);
 
             // Hapus data dari calonpenyewas setelah disimpan

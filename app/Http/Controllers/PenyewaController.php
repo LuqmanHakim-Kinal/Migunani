@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Carbon\Carbon;
 use App\Models\Penyewa;
 use App\Models\Picture;
 use Illuminate\Http\Request;
@@ -22,6 +22,13 @@ class PenyewaController extends Controller
 
     public function store(Request $request)
     {
+        $tanggalMulai = Carbon::parse($request->tanggal_masuk);
+        $tanggalSelesai = Carbon::parse($request->tanggal_selesai);
+
+        // Pastikan tanggal selesai setidaknya 1 bulan setelah tanggal mulai
+        if ($tanggalSelesai->diffInMonths($tanggalMulai) < 1) {
+            return redirect()->route('kamars.index')->with('error', 'Tanggal selesai harus minimal 1 bulan setelah tanggal mulai.');
+        }
         $request->validate([
             'nama'            => 'required|min:8',
             'no_hp'           => 'required|numeric',
@@ -36,15 +43,18 @@ class PenyewaController extends Controller
             'tanggal_masuk'   => $request->tanggal_masuk,
             'tanggal_selesai' => $request->tanggal_selesai,
         ]);
-        foreach ($request->file('files') as $file)
+        if ($request->hasFile('files'))
         {
-            $filename=time().rand(1,200).'.'.$file->extension();
-            $file->move(public_path('uploads/ktp'),$filename);
-            Picture::create([
-                'penyewa_id'=> $penyewa->id,
-                'filename'=> $filename
-            ]);
-        
+            foreach ($request->file('files') as $file)
+            {
+                $filename=time().rand(1,200).'.'.$file->extension();
+                $file->move(public_path('uploads/ktp'),$filename);
+                Picture::create([
+                    'penyewa_id'=> $penyewa->id,
+                    'filename'=> $filename
+                ]);
+            
+            }
         }
 
         return redirect('/penyewa')->with('success', 'Data Has Been Uploaded');
@@ -89,6 +99,11 @@ class PenyewaController extends Controller
         }
 
         return redirect('/penyewa')->with('success', 'Data Has Been Updated');
+    }
+    public function show($id)
+    {
+        $penyewa = Penyewa::with('pictures')->findOrFail($id);
+        return view('penyewa.show', compact('penyewa'));
     }
 
     public function destroy($id)

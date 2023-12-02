@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PenyewaController;
 use App\Http\Controllers\KamarController;
 use App\Http\Controllers\KeluhanController;
+use App\Http\Controllers\CalonpenyewaController;
 
 
 /*
@@ -29,6 +30,8 @@ route::get('/penyewa/create',[\App\Http\Controllers\PenyewaController::class,'cr
 route::get('/penyewa/{id}/edit',[\App\Http\Controllers\PenyewaController::class,'edit']);
 route::put('/penyewa/{id}',[\App\Http\Controllers\PenyewaController::class,'update']);
 route::delete('/penyewa/{id}',[\App\Http\Controllers\PenyewaController::class,'destroy']);
+route::get('/penyewa/{id}',[\App\Http\Controllers\PenyewaController::class,'show'])->name('penyewa.show');
+
 
 //calonPenyewa
 route::get('/calonpenyewa',[\App\Http\Controllers\CalonpenyewaController::class,'index']);

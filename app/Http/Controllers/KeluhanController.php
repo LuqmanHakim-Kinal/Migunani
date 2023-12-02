@@ -19,6 +19,7 @@ class KeluhanController extends Controller
     public function show($id)
     {
         $keluhan = Keluhan::with('penyewa')->findOrFail($id);
+        //dd($keluhan);
         return view('keluhans.show', compact('keluhan'));
     }
 

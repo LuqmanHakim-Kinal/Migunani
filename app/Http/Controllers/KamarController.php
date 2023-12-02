@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Carbon\Carbon;
 use App\Models\Kamar;
 use App\Models\Penyewa;
 use App\Models\Picture;
@@ -27,6 +27,7 @@ class KamarController extends Controller
     {
         //dd($request->all());
         try {
+
             $kamar = new Kamar([
                 'nomor_kamar'   => $request->nomor_kamar,
                 'status_kamar'  => $request->penyewa_id == null ? 'Belum Terisi' : 'Terisi',
@@ -37,12 +38,20 @@ class KamarController extends Controller
             ]);
 
             $kamar->save();
-
-            // Associate penyewa if penyewa_id is provided
-            if ($request->has('penyewa_id')) 
-            {
-                $kamar->penyewa()->associate($request->penyewa_id);
+            if ($request->has('penyewa_id')) {
+                $penyewa = Penyewa::find($request->penyewa_id);
+                
+                // Check if penyewa is found
+                if ($penyewa) {
+                    $penyewa->nomor_kamar = $request->nomor_kamar;
+                    $penyewa->save();
+    
+                    // Associate the Kamar with the Penyewa
+                    $kamar->penyewa()->associate($penyewa);
+                    $kamar->save();
+                }
             }
+
 
             $kamar->save();
 
@@ -80,7 +89,7 @@ class KamarController extends Controller
 
     public function update(KamarRequest $request, $id)
     {
-        try {
+        try {  
             $kamar = Kamar::findOrFail($id);
             //dd($request->all());
             $kamar->update([
@@ -91,7 +100,17 @@ class KamarController extends Controller
             ]);
 
             if ($request->has('penyewa_id')) {
-                $kamar->penyewa()->associate($request->penyewa_id);
+                $penyewa = Penyewa::find($request->penyewa_id);
+                
+                // Check if penyewa is found
+                if ($penyewa) {
+                    $penyewa->nomor_kamar = $request->nomor_kamar;
+                    $penyewa->save();
+    
+                    // Associate the Kamar with the Penyewa
+                    $kamar->penyewa()->associate($penyewa);
+                    $kamar->save();
+                }
             } else {
                 $kamar->penyewa()->dissociate();
             }
