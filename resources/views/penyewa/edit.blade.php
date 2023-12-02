@@ -33,11 +33,11 @@
                 </div>
                 <div class="mb-3">
                   <label for="exampleInputEmail1" class="form-label">Tanggal Masuk</label>
-                  <input type="date" name="tanggal_masuk" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tanggal Masuk"value="{{$penyewa->tanggal_masuk}}">
+                  <input readonly type="date" name="tanggal_masuk" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tanggal Masuk"value="{{$penyewa->tanggal_masuk}}">
                 </div>
                 <div class="mb-3">
                   <label for="exampleInputEmail1" class="form-label">Tanggal Habis</label>
-                  <input type="date" name="tanggal_selesai" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tanggal Habis" value="{{$penyewa->tanggal_selesai}}">
+                  <input readonly type="date" name="tanggal_selesai" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tanggal Habis" value="{{$penyewa->tanggal_selesai}}">
                 </div>
                 <div class="mb-3">
                   <label for="exampleInputEmail1" class="form-label">Foto KTP</label>

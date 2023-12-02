@@ -19,12 +19,13 @@
                 <div class="row">
                     @foreach ($penyewa->pictures as $picture)
                         <div class="col-md-6 mb-3">
-                            <img src="{{ asset('uploads/calonpenyewa/' . $picture->filename) }}" alt="Foto KTP" class="img-thumbnail">
+                            <img class="img-thumbnail" width="100" src="/uploads/ktp/{{$penyewa->pictures()->first()->filename}}" alt="">
                         </div>
                     @endforeach
                 </div>
                 <a href="/penyewa.index" class="btn btn-primary">Kembali ke Daftar</a>
                 <a href="/penyewa/{{$penyewa->id}}/edit" class="btn btn-sm btn-warning">Edit</a>
+                <a href="#" class="btn btn-primary">Bayar</a>
             </div>
         </div>
     </div>
