@@ -91,7 +91,7 @@ class KamarController extends Controller
     {
         try {  
             $kamar = Kamar::findOrFail($id);
-            //dd($request->all());
+
             $kamar->update([
                 'nomor_kamar' => $kamar->nomor_kamar,
                 'harga_kamar' => $request->harga_kamar,
@@ -104,7 +104,8 @@ class KamarController extends Controller
                 
                 if ($penyewa) {
                     // Update the Penyewa's nomor_kamar
-                    $penyewa->nomor_kamar = $request->nomor_kamar;
+                   
+                    $penyewa->nomor_kamar = $kamar->nomor_kamar;
                     $penyewa->save();
     
                     // Associate the Kamar with the Penyewa
