@@ -102,18 +102,22 @@ class KamarController extends Controller
             if ($request->has('penyewa_id')) {
                 $penyewa = Penyewa::find($request->penyewa_id);
                 
-                // Check if penyewa is found
                 if ($penyewa) {
+                    // Update the Penyewa's nomor_kamar
                     $penyewa->nomor_kamar = $request->nomor_kamar;
                     $penyewa->save();
     
                     // Associate the Kamar with the Penyewa
                     $kamar->penyewa()->associate($penyewa);
-                    $kamar->save();
+                } else {
+                    // If Penyewa is not found, dissociate the relationship
+                    $kamar->penyewa()->dissociate();
                 }
             } else {
+                // If penyewa_id is not present, dissociate the relationship
                 $kamar->penyewa()->dissociate();
-            }
+            } 
+    
 
 
             if ($request->hasFile('files')) {

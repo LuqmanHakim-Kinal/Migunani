@@ -9,7 +9,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Room Details</h4>
-                        <p><strong>Room Number:</strong> {{ $kamar->nomor_kamar }}</p>
+                        <p><strong>Nomor Kamar:</strong> {{ $kamar->nomor_kamar }}</p>
                         <p><strong>Status:</strong> {{ $kamar->status }}</p>
                         <p><strong>Price:</strong> {{ $kamar->harga_kamar }}</p>
                         <p><strong>Penyewa:</strong> {{ $kamar->penyewa ? $kamar->penyewa->nama : 'Not Assigned' }}</p>
