@@ -114,36 +114,5 @@ class PenyewaController extends Controller
 
         return redirect('/penyewa')->with('success', 'Data Has Been Deleted');
     }
-    // PenyewaController.php
-
-    public function storePembayran(Request $request, $penyewaId)
-    {
-        // Validate the form data
-        $request->validate([
-            'waktu_sewa' => 'required|numeric|min:1',
-        ]);
-
-        // Retrieve the Penyewa record
-        $penyewa = Penyewa::findOrFail($penyewaId);
-
-        // Calculate the total price based on room price and duration
-        $harga_kamar = $penyewa->kamar->harga_kamar;
-        $dp = 0; // You need to define the dp value
-        $total_price = $harga_kamar * $request->waktu_sewa - $dp;
-
-        // Create a new Payment record
-        $pembayaran = new Pembayaran([
-            'status_bayar' => 'Belum Bayar', // You can adjust this based on your logic
-            'nama_pembayar' => $penyewa->nama,
-            'tanggal_bayar' => now(),
-            'harga' => $total_price,
-        ]);
-
-        // Save the payment and associate it with the Penyewa
-        $penyewa->pembayaran()->save($pembayaran);
-
-        // Redirect back with a success message
-        return redirect()->back()->with('success', 'Pembayaran berhasil.');
-    }
 
 }
