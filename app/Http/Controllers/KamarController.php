@@ -91,7 +91,7 @@ class KamarController extends Controller
     {
         try {  
             $kamar = Kamar::findOrFail($id);
-
+            $old_penyewa=Penyewa::find($request->penyewa_id); 
             $kamar->update([
                 'nomor_kamar' => $kamar->nomor_kamar,
                 'harga_kamar' => $request->harga_kamar,
@@ -101,24 +101,33 @@ class KamarController extends Controller
 
             if ($request->has('penyewa_id')) {
                 $penyewa = Penyewa::find($request->penyewa_id);
-                
+            
                 if ($penyewa) {
-                    // Update the Penyewa's nomor_kamar
-                   
                     $penyewa->nomor_kamar = $kamar->nomor_kamar;
                     $penyewa->save();
-    
+            
                     // Associate the Kamar with the Penyewa
                     $kamar->penyewa()->associate($penyewa);
                 } else {
                     // If Penyewa is not found, dissociate the relationship
                     $kamar->penyewa()->dissociate();
+            
+                    // Check if the room was previously occupied
+                    if ($old_penyewa && $kamar->status_kamar == 'Belum Terisi') {
+                        $old_penyewa->nomor_kamar = null;
+                        $old_penyewa->save();
+                    }
                 }
             } else {
                 // If penyewa_id is not present, dissociate the relationship
                 $kamar->penyewa()->dissociate();
-            } 
-    
+            
+                // Check if the room was previously occupied
+                if ($old_penyewa && $kamar->status_kamar == 'Belum Terisi') {
+                    $old_penyewa->nomor_kamar = null;
+                    $old_penyewa->save();
+                }
+            }
 
 
             if ($request->hasFile('files')) {
@@ -186,4 +195,5 @@ class KamarController extends Controller
         $inventories = $kamar->inventories;
         return view('kamars.show', compact('kamar','inventories'));
     }
+    
 }

@@ -72,3 +72,5 @@ route::post('/inventaris',[\App\Http\Controllers\InventarisController::class,'st
 route::get('/inventaris/{id}/edit',[\App\Http\Controllers\InventarisController::class,'edit'])->name('inventaris.edit');
 route::put('/inventaris/{id}',[\App\Http\Controllers\InventarisController::class,'update'])->name('inventaris.update');
 route::delete('/inventaris/{id}',[\App\Http\Controllers\InventarisController::class,'destroy'])->name('inventaris.destroy');
+
+Route::post('/penyewa/{penyewaId}/payment', [\App\Http\Controllers\PenyewaController::class,'store'])->name('payment.store');

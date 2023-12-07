@@ -14,6 +14,7 @@
                 <p><strong>Alamat:</strong> {{ $penyewa->alamat }}</p>
                 <p><strong>Tanggal Masuk:</strong> {{ $penyewa->tanggal_masuk }}</p>
                 <p><strong>Tanggal Habis:</strong> {{ $penyewa->tanggal_selesai }}</p>
+                <p><strong>Kamar Di Tempati:</strong> {{ $penyewa->nomor_kamar }}</p>
 
                 <p><strong>Foto KTP:</strong></p>
                 <div class="row">
@@ -25,7 +26,34 @@
                 </div>
                 <a href="/penyewa.index" class="btn btn-primary">Kembali ke Daftar</a>
                 <a href="/penyewa/{{$penyewa->id}}/edit" class="btn btn-sm btn-warning">Edit</a>
-                <a href="#" class="btn btn-primary">Bayar</a>
+                <div class="bootstrap-modal">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalpopover">Bayar</button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="bayarModal" tabindex="-1" role="dialog" aria-labelledby="bayarModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="bayarModalLabel">Bayar Sewa</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- Your payment form goes here -->
+                                    <form action="{{ route('payment.store', $penyewa->id) }}" method="post">
+                                        @csrf
+                                        <div class="form-group">
+                                            <label for="waktu_sewa">Waktu Sewa (bulan)</label>
+                                            <input type="number" class="form-control" id="waktu_sewa" name="waktu_sewa" required>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Bayar</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+                </div>
             </div>
         </div>
     </div>
