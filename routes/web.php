@@ -5,6 +5,7 @@ use App\Http\Controllers\PenyewaController;
 use App\Http\Controllers\KamarController;
 use App\Http\Controllers\KeluhanController;
 use App\Http\Controllers\CalonpenyewaController;
+use App\Http\Controllers\PaymentController;
 
 
 /*
@@ -74,3 +75,10 @@ route::put('/inventaris/{id}',[\App\Http\Controllers\InventarisController::class
 route::delete('/inventaris/{id}',[\App\Http\Controllers\InventarisController::class,'destroy'])->name('inventaris.destroy');
 
 Route::post('/penyewa/{penyewaId}/payment', [\App\Http\Controllers\PenyewaController::class,'store'])->name('payment.store');
+
+route::get('/pembayaran',[\App\Http\Controllers\PaymentController::class,'index'])->name('pembayaran.index');
+route::get('/pembayaran/create',[\App\Http\Controllers\PaymentController::class,'create'])->name('pembayaran.create');
+route::post('/pembayaran',[\App\Http\Controllers\PaymentController::class,'store'])->name('pembayaran.store');
+route::get('/pembayaran/{id}/edit',[\App\Http\Controllers\PaymentController::class,'edit'])->name('pembayaran.edit');
+route::put('/pembayaran/{id}',[\App\Http\Controllers\PaymentController::class,'update'])->name('pembayaran.update');
+route::delete('/pembayaran/{id}',[\App\Http\Controllers\PaymentController::class,'destroy'])->name('pembayaran.destroy');

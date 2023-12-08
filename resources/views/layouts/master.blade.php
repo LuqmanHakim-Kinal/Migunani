@@ -253,7 +253,7 @@
                             <i class="icon-globe-alt menu-icon"></i><span class="nav-text">Pembayaran</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="#">Data Pembayaran</a></li>
+                            <li><a href="/pembayaran">Data Pembayaran</a></li>
                             <li><a href="#">Bayar</a></li>
                             <li><a href="#">Two column</a></li>
                         </ul>

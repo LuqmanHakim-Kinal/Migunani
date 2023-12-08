@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('payments', function (Blueprint $table) {
+        Schema::create('pembayarans', function (Blueprint $table) {
             $table->id();
             $table->foreignId('penyewa_id')->nullable()->constrained('penyewas'); // Assuming you have a penyewas table
-            $table->string('status_bayar')->default('Belum Bayar');
-            $table->string('nama_pembayar');
-            $table->date('tanggal_bayar');
-            $table->date('batas_bayar');
-            $table->decimal('harga', 12, 2);
+            $table->string('status_bayar')->default('Belum Bayar')->nullable();
+            $table->string('nama_pembayar')->nullable();
+            $table->date('tanggal_bayar')->nullable();
+            $table->date('batas_bayar')->nullable();
+            $table->decimal('harga', 12, 2)->nullable();
             $table->timestamps();
         });
     }
