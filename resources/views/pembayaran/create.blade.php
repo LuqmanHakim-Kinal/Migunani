@@ -18,16 +18,6 @@
                     @endforeach
                 </select>
             </div>
-            <!-- Status Bayar -->
-            <div class="form-group">
-                <label for="status_bayar">Status Bayar:</label>
-                <select name="status_bayar" id="status_bayar" class="form-control"  readonly>
-                    <option value="Belum Bayar">Belum Bayar</option>
-                    <option value="Lunas">Lunas</option>
-                    <!-- Add other status options if needed -->
-                </select>
-            </div>
-
             <!-- Tanggal Bayar -->
             <div class="form-group">
                 <label for="tanggal_bayar">Tanggal Bayar:</label>

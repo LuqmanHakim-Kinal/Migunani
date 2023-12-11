@@ -19,13 +19,11 @@ class KamarController extends Controller
     public function create()
     {
         $penyewas = Penyewa::all();
-        //$kamars = Kamar::all();
         return view('kamars.create', compact('penyewas'));
     }
 
     public function store(KamarRequest $request)
     {
-        //dd($request->all());
         try {
 
             $kamar = new Kamar([

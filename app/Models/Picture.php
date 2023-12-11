@@ -22,4 +22,8 @@ class Picture extends Model
     {
         return $this->belongsTo(CalonPenyewa::class);
     }
+    public function pembayaran()
+    {
+        return $this->belongsTo(Pembayaran::class);    
+    }
 }
