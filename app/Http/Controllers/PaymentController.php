@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pembayaran;
 use App\Models\Penyewa;
+use App\Models\Kamar;
 use App\Models\Picture;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -17,9 +18,9 @@ class PaymentController extends Controller
     }
     public function create()
     {
-        $penyewas = Penyewa::all(); // Assuming you have a Penyewa model
-
-        return view('pembayaran.create', compact('penyewas'));
+        $penyewas = Penyewa::all(); 
+        $kamars = Kamar::all();
+        return view('pembayaran.create', compact('penyewas','kamars'));
     }
 
     public function store(Request $request)
@@ -30,6 +31,7 @@ class PaymentController extends Controller
             'harga' => 'required|numeric',
         ]);
         $penyewa = Penyewa::findOrFail($request->penyewa_id);
+        $kamar  = Kamar::findOrFail($request->penyewa_id);
         $batas_bayar = Carbon::parse($request->tanggal_bayar)->addMonth();
         $status_bayar = $request->status_bayar ?? 'Belum Bayar';
         $pembayaran = new Pembayaran([
@@ -38,7 +40,7 @@ class PaymentController extends Controller
             'status_bayar' => $status_bayar,
             'tanggal_bayar' => $request->tanggal_bayar,
             'batas_bayar' => $batas_bayar,
-            'harga' => $request->harga,
+            'harga' => $kamar->harga_kamar,
         ]);
         $pembayaran->save();
         if ($request->hasFile('files')) {
@@ -49,14 +51,12 @@ class PaymentController extends Controller
                     'pembayaran_id' => $pembayaran->id,
                     'filename' => $filename,
                 ]);
-    
-                // Update status to 'Terbayar' if there are photos
+
                 $pembayaran->status_bayar = 'Terbayar';
                 $pembayaran->save();
             }
         }
-    
-        // Update status to 'Telat Bayar' if the due date has passed and there are no photos
+
         if ($pembayaran->tanggal_bayar > $pembayaran->batas_bayar && $pembayaran->status_bayar === 'Belum Bayar') {
             $pembayaran->status_bayar = 'Telat Bayar';
             $pembayaran->save();

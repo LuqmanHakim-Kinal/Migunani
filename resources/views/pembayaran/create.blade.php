@@ -25,8 +25,10 @@
             </div>
             <!-- Harga -->
             <div class="form-group">
-                <label for="harga">Harga:</label>
-                <input type="text" name="harga" id="harga" class="form-control" >
+                    @foreach ($kamars as $kamar)
+                        <label for="harga" value="{{ $kamar->penyewa_id }}">{{ $kamar->harga_kamar }}</label>
+                    @endforeach
+                </select>
             </div>
             <div class="form-group">
                 <label for="files">Foto Nota:</label>
