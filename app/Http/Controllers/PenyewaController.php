@@ -28,7 +28,7 @@ class PenyewaController extends Controller
 
         // Pastikan tanggal selesai setidaknya 1 bulan setelah tanggal mulai
         if ($tanggalSelesai->diffInMonths($tanggalMulai) < 1) {
-            return redirect()->route('kamars.index')->with('error', 'Tanggal selesai harus minimal 1 bulan setelah tanggal mulai.');
+            return redirect()->route('penyewa.create')->with('error', 'Tanggal selesai harus minimal 1 bulan setelah tanggal mulai.');
         }
         $request->validate([
             'nama'            => 'required|min:8',
