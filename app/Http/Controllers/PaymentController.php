@@ -47,6 +47,7 @@ class PaymentController extends Controller
         ]);
     
         $pembayaran->save();
+        $penyewa->tambahBulanHabisSewa($request->jumlah_bulan);
         $pembayaran->status_bayar = 'Terbayar';
     
         if ($request->hasFile('files')) {
