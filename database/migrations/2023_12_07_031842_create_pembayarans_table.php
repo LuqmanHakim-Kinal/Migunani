@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nama_pembayar')->nullable();
             $table->date('tanggal_bayar')->nullable();
             $table->date('batas_bayar')->nullable();
+            $table->date('jumlah_bulan')->nullable();
             $table->decimal('harga', 12, 2)->nullable();
             $table->timestamps();
         });
