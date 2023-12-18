@@ -28,12 +28,13 @@ class PaymentController extends Controller
         $request->validate([
             'penyewa_id' => 'required',
             'tanggal_bayar' => 'required|date',
+            'jumlah_bulan' => 'required|integer|min:1', // Tambahkan validasi jumlah bulan
         ]);
     
         $penyewa = Penyewa::findOrFail($request->penyewa_id);
         $kamar = Kamar::where('penyewa_id', $request->penyewa_id)->firstOrFail();
     
-        $batas_bayar = Carbon::parse($request->tanggal_bayar)->addMonth();
+        $batas_bayar = Carbon::parse($request->tanggal_bayar)->addMonths($request->jumlah_bulan); // Tambahkan jumlah bulan ke batas bayar
         $status_bayar = $request->status_bayar ?? 'Belum Bayar';
     
         $pembayaran = new Pembayaran([
@@ -42,10 +43,11 @@ class PaymentController extends Controller
             'status_bayar' => $status_bayar,
             'tanggal_bayar' => $request->tanggal_bayar,
             'batas_bayar' => $batas_bayar,
-            'harga' => $kamar->harga_kamar,
+            'harga' => $kamar->harga_kamar * $request->jumlah_bulan, // Kalikan harga dengan jumlah bulan
         ]);
     
         $pembayaran->save();
+        $pembayaran->status_bayar = 'Terbayar';
     
         if ($request->hasFile('files')) {
             foreach ($request->file('files') as $file) {
@@ -69,6 +71,57 @@ class PaymentController extends Controller
     
         return redirect()->route('pembayaran.index')->with('success', 'Pembayaran berhasil ditambahkan.');
     }
+    public function edit($id)
+{
+    $pembayaran = Pembayaran::findOrFail($id);
+    $penyewas = Penyewa::all();
+    $kamars = Kamar::where('penyewa_id', $pembayaran->penyewa_id)->get();
+
+    return view('pembayaran.edit', compact('pembayaran', 'penyewas', 'kamars'));
+}
+
+public function update(Request $request, $id)
+{
+    $request->validate([
+        'penyewa_id' => 'required',
+        'tanggal_bayar' => 'required|date',
+        'harga' => 'required|numeric',
+    ]);
+
+    $pembayaran = Pembayaran::findOrFail($id);
+    $pembayaran->fill([
+        'penyewa_id' => $request->penyewa_id,
+        'tanggal_bayar' => $request->tanggal_bayar,
+        'harga' => $request->harga,
+    ]);
+    $pembayaran->status_bayar = 'Terbayar';
+    
+    if ($request->hasFile('files')) {
+        foreach ($request->file('files') as $file) {
+            $filename = time() . rand(1, 200) . '.' . $file->extension();
+            $file->move(public_path('uploads/nota'), $filename);
+
+            Picture::create([
+                'pembayaran_id' => $pembayaran->id,
+                'filename' => $filename,
+            ]);
+        }
+
+        $pembayaran->status_bayar = 'Terbayar';
+        $pembayaran->save();
+    }
+
+    if ($pembayaran->tanggal_bayar > $pembayaran->batas_bayar && $pembayaran->status_bayar === 'Belum Bayar') {
+        $pembayaran->status_bayar = 'Telat Bayar';
+        $pembayaran->save();
+    }
+
+
+    $pembayaran->save();
+
+    return redirect()->route('pembayaran.index')->with('success', 'Pembayaran berhasil diupdate.');
+}
+
     
     public function destroy($id)
     {

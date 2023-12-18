@@ -34,6 +34,10 @@
                 <input type="date" name="tanggal_bayar" id="tanggal_bayar" class="form-control datepicker">
             </div>
             
+            <div class="form-group">
+                <label for="jumlah_bulan">Jumlah Bulan:</label>
+                <input type="number" name="jumlah_bulan" id="jumlah_bulan" class="form-control" min="1" value="1">
+            </div>
             <!-- Harga -->
             <div class="form-group">
                 <label for="harga">Harga:</label>

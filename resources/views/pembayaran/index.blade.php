@@ -32,15 +32,18 @@
                         <td>{{ $pembayaran->status_bayar }}</td>
                         <td>{{ $pembayaran->tanggal_bayar }}</td>
                         <td>{{ $pembayaran->batas_bayar }}</td>
-                        <td>{{ $pembayaran->harga }}</td>
+                        <td>Rp.{{ $pembayaran->harga }}</td>
                         <td>
-                            @if ($pembayaran->pictures->isNotEmpty())
+                            @if ($pembayaran->pictures->isNotEmpty() && file_exists(public_path('uploads/nota/' . $pembayaran->pictures->first()->filename)))
                                 <a href="{{ route('pembayaran.show', $pembayaran->id) }}">
-                                    <img class="img-thumbnail" width="100" src="/uploads/nota/{{ $pembayaran->pictures()->first()->filename }}" alt="">
+                                    <img class="img-thumbnail" width="100" src="/uploads/nota/{{ $pembayaran->pictures()->first()->filename }}" alt="Nota Image">
                                 </a>
+                            @else
+                                <span>No Image</span>
                             @endif
                         </td>
                         <td>
+                            <a href="{{ route('pembayaran.edit', $pembayaran->id) }}" class="btn mb-1 btn-primary">Bayar</a>
                             <form action="{{ route('pembayaran.destroy', $pembayaran->id) }}" method="post" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
