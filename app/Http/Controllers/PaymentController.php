@@ -37,7 +37,7 @@ class PaymentController extends Controller
         $batas_bayar = Carbon::parse($request->tanggal_bayar)->addMonth();
         $status_bayar = $request->status_bayar ?? 'Belum Bayar';
     
-        $pembayaran = new Pembayaran([
+        $pembayaran = Pembayaran::create ([
             'penyewa_id' => $request->penyewa_id,
             'nama_pembayar' => $penyewa->nama,
             'status_bayar' => $status_bayar,
@@ -45,16 +45,17 @@ class PaymentController extends Controller
             'batas_bayar' => $batas_bayar,
             'harga' => $kamar->harga_kamar * $request->jumlah_bulan, // Kalikan harga dengan jumlah bulan
         ]);
-    
-        $pembayaran->save();
+        //dd($pembayaran);
+        //$pembayaran->save();
         $penyewa->tambahBulanHabisSewa($request->jumlah_bulan);
         $pembayaran->status_bayar = 'Terbayar';
     
-        if ($request->hasFile('files')) {
-            foreach ($request->file('files') as $file) {
+        if ($request->hasFile('files')) 
+        {
+            foreach ($request->file('files') as $file) 
+            {
                 $filename = time() . rand(1, 200) . '.' . $file->extension();
                 $file->move(public_path('uploads/nota'), $filename);
-    
                 Picture::create([
                     'pembayaran_id' => $pembayaran->id,
                     'filename' => $filename,

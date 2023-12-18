@@ -35,9 +35,7 @@
                         <td>Rp.{{ $pembayaran->harga }}</td>
                         <td>
                             @if ($pembayaran->pictures->isNotEmpty() && file_exists(public_path('uploads/nota/' . $pembayaran->pictures->first()->filename)))
-                                <a href="{{ route('pembayaran.show', $pembayaran->id) }}">
                                     <img class="img-thumbnail" width="100" src="/uploads/nota/{{ $pembayaran->pictures()->first()->filename }}" alt="Nota Image">
-                                </a>
                             @else
                                 <span>No Image</span>
                             @endif
