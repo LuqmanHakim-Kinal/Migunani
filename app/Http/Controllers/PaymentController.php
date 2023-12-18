@@ -34,7 +34,7 @@ class PaymentController extends Controller
         $penyewa = Penyewa::findOrFail($request->penyewa_id);
         $kamar = Kamar::where('penyewa_id', $request->penyewa_id)->firstOrFail();
     
-        $batas_bayar = Carbon::parse($request->tanggal_bayar)->addMonths($request->jumlah_bulan); // Tambahkan jumlah bulan ke batas bayar
+        $batas_bayar = Carbon::parse($request->tanggal_bayar)->addMonth();
         $status_bayar = $request->status_bayar ?? 'Belum Bayar';
     
         $pembayaran = new Pembayaran([
