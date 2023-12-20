@@ -47,11 +47,12 @@ class PaymentController extends Controller
         ]);
         //dd($pembayaran);
         //$pembayaran->save();
-        $penyewa->tambahBulanHabisSewa($request->jumlah_bulan);
+       
         $pembayaran->status_bayar = 'Terbayar';
     
         if ($request->hasFile('files')) 
         {
+            $penyewa->tambahBulanHabisSewa($request->jumlah_bulan);
             foreach ($request->file('files') as $file) 
             {
                 $filename = time() . rand(1, 200) . '.' . $file->extension();
@@ -99,6 +100,7 @@ public function update(Request $request, $id)
     $pembayaran->status_bayar = 'Terbayar';
     
     if ($request->hasFile('files')) {
+        $penyewa->tambahBulanHabisSewa($request->jumlah_bulan);
         foreach ($request->file('files') as $file) {
             $filename = time() . rand(1, 200) . '.' . $file->extension();
             $file->move(public_path('uploads/nota'), $filename);
