@@ -15,7 +15,7 @@
         <p><strong>Pelapor:</strong> {{ $keluhan->penyewa->nama }}</p>
         <p><strong>Status:</strong> {{ $keluhan->status }}</p>
         <p><strong>Tanggal Pelaporan:</strong> {{ $keluhan->tanggal_pelaporan }}</p>
-        <p><strong>Keterangan Laporan:</strong> {{ $keluhan->Keterangan }}</p>
+        <p><strong>Keterangan Laporan:</strong> {{ $keluhan->keterangan }}</p>
         <p><strong>Tanggal Selesai:</strong> {{ $keluhan->tanggal_selesai }}</p>
         <!-- Form untuk mengganti status dan tanggal selesai -->
         <form action="{{ route('keluhans.update', $keluhan->id) }}" method="POST">

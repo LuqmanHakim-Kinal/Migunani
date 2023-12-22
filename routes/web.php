@@ -82,3 +82,5 @@ route::post('/pembayaran',[\App\Http\Controllers\PaymentController::class,'store
 route::get('/pembayaran/{id}/edit',[\App\Http\Controllers\PaymentController::class,'edit'])->name('pembayaran.edit');
 route::put('/pembayaran/{id}',[\App\Http\Controllers\PaymentController::class,'update'])->name('pembayaran.update');
 route::delete('/pembayaran/{id}',[\App\Http\Controllers\PaymentController::class,'destroy'])->name('pembayaran.destroy');
+
+route::get('/dashboard',[\App\Http\Controllers\DashboardController::class,'index'])->name('dashboard.index');

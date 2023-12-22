@@ -33,7 +33,6 @@ class PaymentController extends Controller
     
         $penyewa = Penyewa::findOrFail($request->penyewa_id);
         $kamar = Kamar::where('penyewa_id', $request->penyewa_id)->firstOrFail();
-    
         $batas_bayar = Carbon::parse($request->tanggal_bayar)->addMonth();
         $status_bayar = $request->status_bayar ?? 'Belum Bayar';
     
@@ -92,6 +91,8 @@ public function update(Request $request, $id)
     ]);
 
     $pembayaran = Pembayaran::findOrFail($id);
+    $penyewa = Penyewa::findOrFail($request->penyewa_id);
+
     $pembayaran->fill([
         'penyewa_id' => $request->penyewa_id,
         'tanggal_bayar' => $request->tanggal_bayar,
@@ -101,15 +102,13 @@ public function update(Request $request, $id)
     
     if ($request->hasFile('files')) {
         $penyewa->tambahBulanHabisSewa($request->jumlah_bulan);
-        foreach ($request->file('files') as $file) {
-            $filename = time() . rand(1, 200) . '.' . $file->extension();
-            $file->move(public_path('uploads/nota'), $filename);
-
+        $file = $request->file('files');
+        $filename = time() . rand(1, 200) . '.' . $file->extension();
+        $file->move(public_path('uploads/nota'), $filename);
             Picture::create([
                 'pembayaran_id' => $pembayaran->id,
                 'filename' => $filename,
             ]);
-        }
 
         $pembayaran->status_bayar = 'Terbayar';
         $pembayaran->save();

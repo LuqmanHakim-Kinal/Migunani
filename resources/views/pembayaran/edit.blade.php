@@ -14,7 +14,7 @@
                 </ul>
             </div>
         @endif
-        <form action="{{ route('pembayaran.update', $pembayaran->id) }}" method="post">
+        <form action="{{ route('pembayaran.update', $pembayaran->id) }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -46,7 +46,7 @@
             <!-- File Upload -->
             <div class="form-group">
                 <label for="files">Foto Nota:</label>
-                <input type="file" name="files[]" class="form-control-file">
+                <input type="file" name="files" class="form-control-file">
             </div>
 
             <!-- Other fields as needed -->

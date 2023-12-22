@@ -29,7 +29,8 @@ class KeluhanController extends Controller
         return view('keluhans.create',compact('penyewas'));
     }
     public function store(Request $request)
-    {
+    {   
+        dd($request->all());
         $request->validate([
             'judul' => 'required',
             'penyewa_id' => 'required|exists:penyewas,id',
