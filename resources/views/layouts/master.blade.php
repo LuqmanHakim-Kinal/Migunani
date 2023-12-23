@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="{{ asset('/assets/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css')}}">
     <!-- Custom Stylesheet -->
     <link href="{{ asset('/assets/css/style.css')}}" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.css">
 </head>
 
 <body>
@@ -340,7 +340,7 @@
     <!-- ChartistJS -->
     <script src="{{ asset('/assets/plugins/chartist/js/chartist.min.js')}}"></script>
     <script src="{{ asset('/assets/plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js')}}"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>  
 
 
     <script src="{{ asset('/assets/js/dashboard/dashboard-1.js')}}"></script>

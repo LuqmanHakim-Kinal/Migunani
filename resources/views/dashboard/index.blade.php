@@ -163,11 +163,49 @@
                                 </div>
                             </div>
                         </div>
-                    <div class="row">
-                    </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Pemasukan</h4>
+                                        <canvas id="monthlyPaymentChart" width="400" height="200"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        
                 </div>
             </div>
         </div>
     </div>
 </div>
+    @push('scripts')
+        <script>
+            var ctx = document.getElementById('monthlyPaymentChart').getContext('2d');
+            var data = {!! json_encode($monthlyIncome) !!};
+
+            var monthlyPaymentChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: data.months,
+                    datasets: [{
+                        label: 'Total Pembayaran',
+                        data: data.totalPayments,
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        </script>
+    @endpush
+
 @endsection

@@ -8,6 +8,7 @@ use App\Models\Keluhan;
 use App\Models\Pembayaran;
 use App\Models\Calonpenyewa;
 use App\Models\Penyewa;
+use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
 class DashboardController extends Controller
@@ -23,6 +24,17 @@ class DashboardController extends Controller
         $calonpenyewas = Calonpenyewa::take(5)->get();
         $penyewas = Penyewa::all();
         $habisMasaSewa = Penyewa::whereDate('tanggal_selesai', '<', Carbon::today())->take(5)->get();
+        $monthlyIncomeData = Pembayaran::selectRaw('DATE_FORMAT(tanggal_bayar, "%Y-%m") as month')
+            ->selectRaw('SUM(harga) as total_payment')
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
+        $months = $monthlyIncomeData->pluck('month');
+        $totalPayments = $monthlyIncomeData->pluck('total_payment');
+        $monthlyIncome = [
+            'months' => $months,
+            'totalPayments' => $totalPayments,
+        ];
         return view('dashboard.index', compact(
             'occupiedRoomsCount',
             'emptyRoomsCount',
@@ -32,7 +44,8 @@ class DashboardController extends Controller
             'lastPayments',
             'calonpenyewas',
             'penyewas',
-            'habisMasaSewa'  // Include the lastPayments variable
+            'habisMasaSewa', 
+            'monthlyIncome' // Include the lastPayments variable
         ));
     }
 }
