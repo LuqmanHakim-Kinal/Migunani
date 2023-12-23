@@ -10,6 +10,10 @@ class Pembayaran extends Model
     use HasFactory;
     protected $guarded = [];
     protected $perPage = 5;
+    public function penyewa()
+    {
+        return $this->belongsTo(Penyewa::class, 'penyewa_id');
+    }
     public function pictures()
     {
         return $this->hasMany(Picture::class);

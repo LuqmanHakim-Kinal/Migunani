@@ -30,9 +30,17 @@ class PaymentController extends Controller
             'tanggal_bayar' => 'required|date',
             'jumlah_bulan' => 'required|integer|min:1', // Tambahkan validasi jumlah bulan
         ]);
-    
         $penyewa = Penyewa::findOrFail($request->penyewa_id);
-        $kamar = Kamar::where('penyewa_id', $request->penyewa_id)->firstOrFail();
+
+        // Check if Kamar record exists
+        $kamar = Kamar::where('penyewa_id', $request->penyewa_id)->first();
+    
+        if (!$kamar) {
+            // Handle the case where no Kamar record is found.
+            // You might want to redirect back with an error message or take other appropriate action.
+            return redirect()->back()->with('error', 'Kamar not found for the specified penyewa_id.');
+        }
+    
         $batas_bayar = Carbon::parse($request->tanggal_bayar)->addMonth();
         $status_bayar = $request->status_bayar ?? 'Belum Bayar';
     
@@ -76,7 +84,7 @@ class PaymentController extends Controller
     }
     public function edit($id)
 {
-    $pembayaran = Pembayaran::findOrFail($id);
+    $pembayaran = Pembayaran::with('penyewa')->findOrFail($id);
     $penyewas = Penyewa::all();
     $kamars = Kamar::where('penyewa_id', $pembayaran->penyewa_id)->get();
 
@@ -85,46 +93,52 @@ class PaymentController extends Controller
 
 public function update(Request $request, $id)
 {
+    // Validate the request data
     $request->validate([
         'penyewa_id' => 'required',
         'tanggal_bayar' => 'required|date',
         'harga' => 'required|numeric',
     ]);
 
+    // Find the payment record
     $pembayaran = Pembayaran::findOrFail($id);
+    
+    // Find the associated tenant (Penyewa)
     $penyewa = Penyewa::findOrFail($request->penyewa_id);
 
-    $pembayaran->fill([
+    // Update the payment details
+    $pembayaran->update([
         'penyewa_id' => $request->penyewa_id,
         'tanggal_bayar' => $request->tanggal_bayar,
         'harga' => $request->harga,
+        'status_bayar' => 'Terbayar', // Set status here
     ]);
-    $pembayaran->status_bayar = 'Terbayar';
-    
+
+    // Process file upload if files are present in the request
     if ($request->hasFile('files')) {
         $penyewa->tambahBulanHabisSewa($request->jumlah_bulan);
-        $file = $request->file('files');
-        $filename = time() . rand(1, 200) . '.' . $file->extension();
-        $file->move(public_path('uploads/nota'), $filename);
+
+        foreach ($request->file('files') as $file) {
+            $filename = time() . rand(1, 200) . '.' . $file->extension();
+            $file->move(public_path('uploads/nota'), $filename);
+
+            // Create a new picture record
             Picture::create([
                 'pembayaran_id' => $pembayaran->id,
                 'filename' => $filename,
             ]);
-
-        $pembayaran->status_bayar = 'Terbayar';
-        $pembayaran->save();
+        }
     }
 
+    // Check for late payment and update the status
     if ($pembayaran->tanggal_bayar > $pembayaran->batas_bayar && $pembayaran->status_bayar === 'Belum Bayar') {
-        $pembayaran->status_bayar = 'Telat Bayar';
-        $pembayaran->save();
+        $pembayaran->update(['status_bayar' => 'Telat Bayar']);
     }
 
-
-    $pembayaran->save();
-
+    // Redirect to the payment index with a success message
     return redirect()->route('pembayaran.index')->with('success', 'Pembayaran berhasil diupdate.');
 }
+
 
     
     public function destroy($id)

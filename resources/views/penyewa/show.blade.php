@@ -43,7 +43,7 @@
                             {{ $pembayarans->links('pagination::bootstrap-4') }}
                         </div>
                     @else
-                        <p>No payment history available.</p>
+                        <p>Tidak ada jejak pembayaran.</p>
                     @endif
                 <p><strong>Foto KTP:</strong></p>
                 <div class="row">

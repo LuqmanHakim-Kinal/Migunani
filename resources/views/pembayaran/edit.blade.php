@@ -25,11 +25,8 @@
                     <!-- Nama Pembayar -->
                     <div class="form-group">
                         <label for="penyewa_id">Penyewa:</label>
-                            @foreach ($penyewas as $penyewa)
-                                <input type="text" name="penyewa_id" id="penyewa_id" class="form-control"
-                                value=" {{ $penyewa->nama }}" readonly>
-                            @endforeach
-                        </select>
+                        <input type="text" name="penyewa_id" id="penyewa_id" class="form-control"
+                               value="{{ $pembayaran->penyewa->nama }}" readonly>
                     </div>
 
                     <!-- Tanggal Bayar -->
