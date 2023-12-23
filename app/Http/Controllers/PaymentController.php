@@ -42,6 +42,7 @@ class PaymentController extends Controller
             'status_bayar' => $status_bayar,
             'tanggal_bayar' => $request->tanggal_bayar,
             'batas_bayar' => $batas_bayar,
+            'jumlah_bulan' => $request->jumlah_bulan,
             'harga' => $kamar->harga_kamar * $request->jumlah_bulan, // Kalikan harga dengan jumlah bulan
         ]);
         //dd($pembayaran);

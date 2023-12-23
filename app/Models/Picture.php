@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Picture extends Model
 {
     use HasFactory;
-    protected $fillable = ['penyewa_id', 'kamar_id', 'inventory_id','pembayaran_id', 'filename'];
+    protected $fillable = ['penyewa_id', 'kamar_id', 'inventory_id','pembayaran_id','calonpenyewa_id', 'filename'];
     
     public function kamar()
     {

@@ -16,9 +16,9 @@ class Penyewa extends Model
     {
         return $this->hasMany(Picture::class);
     }
-        public function kamars()
+    public function kamars()
     {
-        return $this->hasMany(Kamar::class);
+    return $this->hasMany(Kamar::class);
     }
     public function tambahBulanHabisSewa($jumlahBulan)
     {

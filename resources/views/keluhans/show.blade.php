@@ -23,7 +23,7 @@
             @method('PUT')
 
             <div class="form-group">
-                <label for="status">Status :</label>
+                <label for="status">Status   :</label>
                 <select name="status" class="form-control">
                     <option value="Proses" {{ $keluhan->status === 'Proses' ? 'selected' : '' }}>Proses</option>
                     <option value="Selesai" {{ $keluhan->status === 'Selesai' ? 'selected' : '' }}>Selesai</option>

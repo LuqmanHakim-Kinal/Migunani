@@ -1,12 +1,11 @@
 @extends('layouts.master')
 @section('content')
-<div class="row">
-    <div class="col-12">
-      <div class="card mb-4">
-        <div class="card-header pb-0">
-          <h6>Tambah Data</h6>
-        </div>
-        <div class="card-body px-2 pt-0 pb-2">
+<div class="container-fluid">
+  <div class="row">
+      <div class="col-12">
+          <div class="card">
+              <div class="card-body">
+                  <h2>Tambah Data</h2>
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
@@ -38,14 +37,13 @@
                   <label for="exampleInputEmail1" class="form-label">Tanggal Habis</label>
                   <input type="date" name="tanggal_selesai" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tanggal Habis">
                 </div>
-                <div class="mb-3">
+                <div class="form-group">
                   <label for="exampleInputEmail1" class="form-label">Foto KTP</label>
-                  <input name="files[]" multiple type="file" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name">
+                  <input name="files[]" multiple type="file" class="form-control-file" >
                 </div>
-
                 <button type="submit" class="btn btn-primary">Submit</button>
               </form>
-        </div>  
+          </div>  
       </div>
     </div>
 </div>
