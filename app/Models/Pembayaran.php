@@ -9,6 +9,7 @@ class Pembayaran extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    protected $perPage = 5;
     public function pictures()
     {
         return $this->hasMany(Picture::class);

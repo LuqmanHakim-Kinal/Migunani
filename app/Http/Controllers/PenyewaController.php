@@ -103,10 +103,11 @@ class PenyewaController extends Controller
     }
     public function show($id)
     {
-        $penyewa = Penyewa::with('pictures')->findOrFail($id);
-        return view('penyewa.show', compact('penyewa'));
+        $penyewa = Penyewa::with('pictures', 'pembayarans')->findOrFail($id);
+        $pembayarans = $penyewa->pembayarans()->paginate(5);
+    
+        return view('penyewa.show', compact('penyewa', 'pembayarans'));
     }
-
     public function destroy($id)
     {
         $penyewa = Penyewa::find($id);

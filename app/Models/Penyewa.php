@@ -26,4 +26,8 @@ class Penyewa extends Model
         $this->tanggal_selesai = Carbon::parse($this->tanggal_selesai)->addMonths($jumlahBulan);
         $this->save();
     }
+    public function pembayarans()
+    {
+        return $this->hasMany(Pembayaran::class);
+    }
 }

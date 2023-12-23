@@ -15,7 +15,36 @@
                 <p><strong>Tanggal Masuk:</strong> {{ $penyewa->tanggal_masuk }}</p>
                 <p><strong>Tanggal Habis:</strong> {{ $penyewa->tanggal_selesai }}</p>
                 <p><strong>Kamar Di Tempati:</strong> {{ $penyewa->nomor_kamar }}</p>
-
+                <h4 class="mt-4">Histori Pembayaran</h4>
+                @if ($pembayarans->count() > 0)
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Tanggal Bayar</th>
+                                <th>Jumlah Bulan</th>
+                                <th>Status Bayar</th>
+                                <!-- Add more columns as needed -->
+                            </tr>
+                        </thead>
+                            <tbody>
+                                @foreach ($pembayarans as $index => $pembayaran)
+                                    <tr>
+                                        <td>{{ $index + 1 }}</td>
+                                        <td>{{ $pembayaran->tanggal_bayar }}</td>
+                                        <td>{{ $pembayaran->jumlah_bulan }}</td>
+                                        <td>{{ $pembayaran->status_bayar }}</td>
+                                        <!-- Add more cells with data as needed -->
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        <div class="d-flex justify-content-center" style="margin-top: 10px; font-size: 0.75rem;">
+                            {{ $pembayarans->links('pagination::bootstrap-4') }}
+                        </div>
+                    @else
+                        <p>No payment history available.</p>
+                    @endif
                 <p><strong>Foto KTP:</strong></p>
                 <div class="row">
                     @foreach ($penyewa->pictures as $picture)
