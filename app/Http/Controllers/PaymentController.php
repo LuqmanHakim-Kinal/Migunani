@@ -36,14 +36,15 @@ class PaymentController extends Controller
         $kamar = Kamar::where('penyewa_id', $request->penyewa_id)->first();
     
         if (!$kamar) {
-            // Handle the case where no Kamar record is found.
-            // You might want to redirect back with an error message or take other appropriate action.
             return redirect()->back()->with('error', 'Kamar not found for the specified penyewa_id.');
         }
     
         $batas_bayar = Carbon::parse($request->tanggal_bayar)->addMonth();
         $status_bayar = $request->status_bayar ?? 'Belum Bayar';
-    
+        $harga = $kamar->harga_kamar * $request->jumlah_bulan;
+        if ($penyewa->pembayarans()->count() === 0) {
+            $harga -= $penyewa->dp;
+        }    
         $pembayaran = Pembayaran::create ([
             'penyewa_id' => $request->penyewa_id,
             'nama_pembayar' => $penyewa->nama,
@@ -51,7 +52,7 @@ class PaymentController extends Controller
             'tanggal_bayar' => $request->tanggal_bayar,
             'batas_bayar' => $batas_bayar,
             'jumlah_bulan' => $request->jumlah_bulan,
-            'harga' => $kamar->harga_kamar * $request->jumlah_bulan, // Kalikan harga dengan jumlah bulan
+            'harga' => $harga, // Kalikan harga dengan jumlah bulan
         ]);
         //dd($pembayaran);
         //$pembayaran->save();

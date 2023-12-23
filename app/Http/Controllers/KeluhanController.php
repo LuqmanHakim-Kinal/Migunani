@@ -30,7 +30,7 @@ class KeluhanController extends Controller
     }
     public function store(Request $request)
     {   
-        dd($request->all());
+        //dd($request->all());
         $request->validate([
             'judul' => 'required',
             'penyewa_id' => 'required|exists:penyewas,id',

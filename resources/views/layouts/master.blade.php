@@ -220,9 +220,9 @@
         <div class="nk-sidebar">           
             <div class="nk-nav-scroll">
                 <ul class="metismenu" id="menu">
-                    <li class="nav-label">Dashboard</li>
+                    <li class="nav-label" ">Dashboard</li>
                     <li>
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                        <a href="/dashboard">
                             <i class="icon-speedometer menu-icon"></i><span class="nav-text">Dashboard</span>
                         </a>
                     </li>

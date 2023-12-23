@@ -33,7 +33,7 @@
                     <div class="form-group">
                         <label for="tanggal_bayar">Tanggal Bayar:</label>
                         <input type="date" name="tanggal_bayar" id="tanggal_bayar" class="form-control"
-                            value="{{ $pembayaran->tanggal_bayar }}" readonly>
+                            value="{{ $pembayaran->tanggal_bayar }}" >
                     </div>
 
                     <!-- Harga -->
@@ -43,7 +43,7 @@
                             value="{{ $pembayaran->harga }}" readonly>
                     </div>
                     <!-- Jumlah Bulan -->
-                    <div class="form-group" hidden>
+                    <div class="form-group" >
                         <label for="harga">Lama Sewa:</label>
                         <input type="text" name="jumlah_bulan" id="jumlah_bulan" class="form-control"
                             value="{{ $pembayaran->jumlah_bulan }}" readonly>
