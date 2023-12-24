@@ -147,10 +147,13 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach ($lastPayments as $payment)
+                                                    @foreach ($lastPayments->take(7) as $payment)
                                                         <tr>
                                                             <td>{{ $payment->nama_pembayar }}</td>
-                                                            <td>{{ $payment->status_bayar }}</td>
+                                                            <td>
+                                                                <i class="{{ $payment->status_bayar == 'Terbayar' ? 'fas fa-check-circle text-success' : 'fas fa-exclamation-circle text-warning' }}"></i>
+                                                                {{ $payment->status_bayar }}
+                                                            </td>
                                                             <td>{{ $payment->tanggal_bayar }}</td>
                                                             <td>{{ $payment->batas_bayar }}</td>
                                                             <td>{{ $payment->harga }}</td>
@@ -162,7 +165,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>                        
                         <div class="row">
                             <div class="col-lg-6 col-md-12">
                                 <div class="card">

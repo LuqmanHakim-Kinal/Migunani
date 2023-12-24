@@ -33,7 +33,10 @@
                         @foreach ($pembayarans as $pembayaran)
                             <tr>
                                 <td>{{ $pembayaran->nama_pembayar }}</td>
-                                <td>{{ $pembayaran->status_bayar }}</td>
+                                <td>
+                                    <i class="{{ $pembayaran->status_bayar == 'Terbayar' ? 'fas fa-check-circle text-success' : 'fas fa-exclamation-circle text-warning' }}"></i>
+                                    {{ $pembayaran->status_bayar }}
+                                </td>
                                 <td>{{ $pembayaran->tanggal_bayar }}</td>
                                 <td>{{ $pembayaran->batas_bayar }}</td>
                                 <td>Rp.{{ $pembayaran->harga }}</td>
