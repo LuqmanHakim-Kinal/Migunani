@@ -1,12 +1,11 @@
 @extends('layouts.master')
 @section('content')
-<div class="row">
-    <div class="col-12">
-      <div class="card mb-4">
-        <div class="card-header pb-0">
-          <h6>Tambah Data</h6>
-        </div>
-        <div class="card-body px-2 pt-0 pb-2">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                  <h2 class="card-title">Tambah Calon Penyewa</h2>
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>

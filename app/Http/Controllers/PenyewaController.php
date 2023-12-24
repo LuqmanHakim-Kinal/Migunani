@@ -13,6 +13,7 @@ class PenyewaController extends Controller
     public function index()
     {
         $penyewas = Penyewa::all();
+        $penyewas = Penyewa::paginate(10);
         return view('penyewa.index', compact('penyewas'));
     }
 

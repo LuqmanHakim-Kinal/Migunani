@@ -8,7 +8,7 @@
                 <div class="card-body">
                     <h4 class="card-title">Data Calon Penyewa</h4>
                     <div class="table-responsive">
-                        <a href="{{ route('calonpenyewa.create') }}" class="btn btn-primary">Tambah Calon Penyewa</a>
+                        <a href="/calonpenyewa/create" class="btn btn-primary">Tambah Calon Penyewa</a>
                         <table class="table table-striped table-bordered zero-configuration">
                             <thead>
                                 <tr>
@@ -44,8 +44,6 @@
                                                 @csrf
                                                 <button type="submit" class="btn btn-primary">Transfer Data</button>
                                             </form>
-                                            
-
                                         </td>
                                     </tr>
                                 @endforeach
@@ -54,6 +52,11 @@
                                 <!-- Tambahan footer jika diperlukan -->
                             </tfoot>
                         </table>
+
+                        <!-- Pagination links -->
+                        <div class="d-flex justify-content-center" style="margin-top: 10px; font-size: 0.75rem;">
+                            {{ $calonpenyewas->links('pagination::bootstrap-4') }}
+                        </div>
                     </div>
                 </div>
             </div>

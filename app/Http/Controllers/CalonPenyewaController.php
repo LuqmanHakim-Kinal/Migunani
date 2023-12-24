@@ -14,6 +14,7 @@ class CalonPenyewaController extends Controller
     public function index()
     {
         $calonpenyewas = Calonpenyewa::all();
+        $calonpenyewas = CalonPenyewa::paginate(10);
         return view('calonpenyewa.index', compact('calonpenyewas'));
     }
 

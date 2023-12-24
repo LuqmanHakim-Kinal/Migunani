@@ -39,16 +39,18 @@
                                                 @csrf
                                                 <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?')">Habis</button>
                                             </form>
-                                            
-
                                         </td>
                                     </tr>
                                 @endforeach
                             </tbody>
                             <tfoot>
-                                <!-- Tambahan footer jika diperlukan -->
                             </tfoot>
                         </table>
+
+                        <!-- Pagination links -->
+                        <div class="d-flex justify-content-center" style="margin-top: 10px; font-size: 0.75rem;">
+                            {{ $penyewas->links('pagination::bootstrap-4') }}
+                        </div>
                     </div>
                 </div>
             </div>
