@@ -14,6 +14,7 @@ class PaymentController extends Controller
     public function index()
     {
         $pembayarans = Pembayaran::all(); 
+        $pembayarans = Pembayaran::paginate(10);
         return view('pembayaran.index', compact('pembayarans'));
     }
     public function create()

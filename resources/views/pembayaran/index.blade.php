@@ -59,6 +59,9 @@
                         @endforeach
                     </tbody>
                 </table>
+                <div class="d-flex justify-content-center" style="margin-top: 10px; font-size: 0.75rem;">
+                    {{ $pembayarans->links('pagination::bootstrap-4') }}
+                </div>
             </div>
         </div>
     </div>

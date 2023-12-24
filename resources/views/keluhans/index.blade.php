@@ -40,6 +40,9 @@
                         </table>
                     </div>                
                 </div>
+                <div class="d-flex justify-content-center" style="margin-top: 10px; font-size: 0.75rem;">
+                    {{ $keluhans->links('pagination::bootstrap-4') }}
+                </div>
             </div>
         </div>
     </div>

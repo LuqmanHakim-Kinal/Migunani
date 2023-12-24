@@ -13,6 +13,7 @@ class KeluhanController extends Controller
     public function index()
     {
         $keluhans = Keluhan::with('penyewa')->get();
+        $keluhans = Keluhan::paginate(10);
         return view('keluhans.index', compact('keluhans'));
     }
 
