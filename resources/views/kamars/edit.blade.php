@@ -70,7 +70,8 @@
                                     </div>
                                 @endforeach
                             </div>
-                            <button type="submit" class="btn btn-primary">Update Room</button>
+                            <button type="submit" class="btn btn-primary">Update kamar</button>
+                            <a href="{{ route('kamars.index') }}" class="btn btn-warning">Kembali</a>
                         </form>
                     </div>
                 </div>

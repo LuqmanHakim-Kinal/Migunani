@@ -148,7 +148,7 @@
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="/pembayaran">Data Pembayaran</a></li>
-                            <li><a href="#">Bayar</a></li>
+                            <li><a href="{{ route('pembayaran.create') }}">Bayar</a></li>
                         </ul>
                     </li>
                     <li class="mega-menu mega-menu-sm">

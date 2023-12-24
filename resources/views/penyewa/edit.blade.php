@@ -45,6 +45,7 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary">Submit</button>
+                <a href="{{ route('penyewa.show', $penyewa->id) }}" class="btn mb-1 btn-secondary">kembali</a>
               </form>
         </div>  
       </div>

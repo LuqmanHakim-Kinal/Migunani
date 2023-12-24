@@ -26,7 +26,7 @@
                                         <tr>
                                             <td>{{ $kamar->nomor_kamar }}</td>
                                             <td>
-                                                <i class="{{ $kamar->status_kamar == 'Tersedia' ? 'fas fa-check-circle text-success' : 'fas fa-exclamation-circle text-warning' }}"></i>
+                                                <i class="{{ $kamar->status_kamar == 'Terisi' ? 'fas fa-check-circle text-success' : 'fas fa-exclamation-circle text-warning' }}"></i>
                                                 {{ $kamar->status_kamar }}
                                             </td>
                                             <td>Rp.{{ $kamar->harga_kamar }}</td>

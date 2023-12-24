@@ -53,7 +53,7 @@
                         @endforeach
                     </div>
                     <div class="mt-3 d-flex justify-content-between">
-                        <a href="/penyewa" class="btn btn-primary">Kembali ke Daftar</a>
+                        <a href="/penyewa" class="btn mb-1 btn-secondary">Kembali ke Daftar</a>
                         <div>
                         <a href="/penyewa/{{$penyewa->id}}/edit" class="btn btn-sm btn-warning">Edit</a>
                         <a href="{{ route('pembayaran.create') }}" class="btn btn-primary">Bayar Sewa</a>

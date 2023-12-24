@@ -32,13 +32,16 @@
                                               <img class="img-thumbnail" width="100" src="/uploads/ktp/{{$penyewa->pictures()->first()->filename}}" alt="">
                                             @endif                      
                                           </td>
-                                        <td>
-                                            <a href="{{ route('penyewa.show', $penyewa->id) }}" class="btn btn-info">View</a>
-                                            <form action="/penyewa/{{ $penyewa->id }}" method="POST">
-                                                @method("DELETE")
-                                                @csrf
-                                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?')">Habis</button>
-                                            </form>
+                                          <td>
+                                            <div class="btn-group" role="group">
+                                                <a href="{{ route('penyewa.show', $penyewa->id) }}" class="btn btn-info">View</a>
+                                        
+                                                <form action="/penyewa/{{ $penyewa->id }}" method="POST">
+                                                    @method("DELETE")
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?')">Habis</button>
+                                                </form>
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach
