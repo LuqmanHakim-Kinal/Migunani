@@ -31,10 +31,7 @@ class DashboardController extends Controller
             ->get();
         $months = $monthlyIncomeData->pluck('month');
         $totalPayments = $monthlyIncomeData->pluck('total_payment');
-        $monthlyIncome = [
-            'months' => $months,
-            'totalPayments' => $totalPayments,
-        ];
+        $monthlyIncome = $this->getMonthlyIncome();
         return view('dashboard.index', compact(
             'occupiedRoomsCount',
             'emptyRoomsCount',
@@ -47,5 +44,17 @@ class DashboardController extends Controller
             'habisMasaSewa', 
             'monthlyIncome' // Include the lastPayments variable
         ));
+    }
+    private function getMonthlyIncome()
+    {
+        $monthlyIncome = Pembayaran::select(
+                DB::raw('DATE_FORMAT(tanggal_bayar, "%Y-%m") as month'),
+                DB::raw('SUM(harga) as total_income')
+            )
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
+
+        return $monthlyIncome;
     }
 }

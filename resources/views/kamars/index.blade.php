@@ -8,9 +8,10 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Room Data</h4>
+                        <h2>Kamar</h2>
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered zero-configuration">
+                                <a href="{{ route('kamars.create') }}" class="btn btn-primary">Tambah Kamar</a>
                                 <thead>
                                     <tr>
                                         <th>Room Number</th>
@@ -40,6 +41,10 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                        </div>
+
+                        <div class="d-flex justify-content-center" style="margin-top: 10px; font-size: 0.75rem;">
+                            {{ $kamars->links('pagination::bootstrap-4') }}
                         </div>
                     </div>
                 </div>

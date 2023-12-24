@@ -172,6 +172,31 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-lg-6 col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Tabel Pemasukan Bulanan</h4>
+                                        <div class="table-responsive">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Bulan</th>
+                                                        <th>Total Pemasukan</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach($monthlyIncome as $month => $totalIncome)
+                                                        <tr>
+                                                            <td>{{ $month }}</td>
+                                                            <td>{{ $totalIncome }}</td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     
                         

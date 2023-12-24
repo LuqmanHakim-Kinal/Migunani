@@ -10,9 +10,10 @@ use Illuminate\Support\Facades\DB;
 
 class KamarController extends Controller
 {
+    
     public function index()
     {
-        $kamars = Kamar::all(); 
+        $kamars = Kamar::paginate(10);
         return view('kamars.index', compact('kamars'));
     }
 

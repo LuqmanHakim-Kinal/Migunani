@@ -53,8 +53,7 @@
                         <label for="files">Foto Nota:</label>
                         <input type="file" name="files[]" class="form-control-file">
                     </div>
-                    
-                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <button type="submit" class="btn btn-primary">Bayar</button>
                 </form>
             </div>
         </div>

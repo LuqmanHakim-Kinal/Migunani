@@ -23,13 +23,14 @@ Route::get('/', function () {
 
 
 //Penyewa
-Route::get('/penyewa',[\App\Http\Controllers\PenyewaController::class,'index']);
-Route::post('/penyewa',[\App\Http\Controllers\PenyewaController::class,'store']);
-Route::get('/penyewa/create',[\App\Http\Controllers\PenyewaController::class,'create']);
-Route::get('/penyewa/{id}/edit',[\App\Http\Controllers\PenyewaController::class,'edit']);
-Route::put('/penyewa/{id}',[\App\Http\Controllers\PenyewaController::class,'update']);
-Route::delete('/penyewa/{id}',[\App\Http\Controllers\PenyewaController::class,'destroy']);
+Route::get('/penyewa',[\App\Http\Controllers\PenyewaController::class,'index'])->name('penyewa.index');
+Route::post('/penyewa',[\App\Http\Controllers\PenyewaController::class,'store'])->name('penyewa.store');
+Route::get('/penyewa/create',[\App\Http\Controllers\PenyewaController::class,'create'])->name('penyewa.create');
+Route::get('/penyewa/{id}/edit',[\App\Http\Controllers\PenyewaController::class,'edit'])->name('penyewa.edit');
+Route::put('/penyewa/{id}',[\App\Http\Controllers\PenyewaController::class,'update'])->name('penyewa.update');
+Route::delete('/penyewa/{id}',[\App\Http\Controllers\PenyewaController::class,'destroy'])->name('penyewa.show');
 Route::get('/penyewa/{id}',[\App\Http\Controllers\PenyewaController::class,'show'])->name('penyewa.show');
+
 
 
 //calonPenyewa
@@ -77,8 +78,10 @@ Route::post('/penyewa/{penyewaId}/payment', [\App\Http\Controllers\PenyewaContro
 Route::get('/pembayaran',[\App\Http\Controllers\PaymentController::class,'index'])->name('pembayaran.index');
 Route::get('/pembayaran/create',[\App\Http\Controllers\PaymentController::class,'create'])->name('pembayaran.create');
 Route::post('/pembayaran',[\App\Http\Controllers\PaymentController::class,'store'])->name('pembayaran.store');
+Route::post('/pembayaran/{penyewa_id}',[\App\Http\Controllers\PaymentController::class,'store'])->name('pembayaran.store');
 Route::get('/pembayaran/{id}/edit',[\App\Http\Controllers\PaymentController::class,'edit'])->name('pembayaran.edit');
 Route::put('/pembayaran/{id}',[\App\Http\Controllers\PaymentController::class,'update'])->name('pembayaran.update');
 Route::delete('/pembayaran/{id}',[\App\Http\Controllers\PaymentController::class,'destroy'])->name('pembayaran.destroy');
+Route::post('/pembayaran/store/{penyewa}', [PaymentController::class, 'store'])->name('pembayaran.store');
 
 Route::get('/dashboard',[\App\Http\Controllers\DashboardController::class,'index'])->name('dashboard.index');
