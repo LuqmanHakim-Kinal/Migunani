@@ -8,6 +8,7 @@
                 <div class="card-body">
                     <h4 class="card-title">Data Calon Penyewa</h4>
                     <div class="table-responsive">
+                        <a href="{{ route('calonpenyewa.create') }}" class="btn btn-primary">Tambah Calon Penyewa</a>
                         <table class="table table-striped table-bordered zero-configuration">
                             <thead>
                                 <tr>

@@ -16,6 +16,7 @@
                     </div>
                 @endif
                     <h4 class="card-title">Data Inventaris</h4>
+                    <a href="{{ route('inventaris.create') }}" class="btn btn-primary">Tambah Invnetaris</a>
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered zero-configuration">
                             <thead>
