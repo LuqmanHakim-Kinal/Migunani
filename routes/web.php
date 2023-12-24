@@ -78,10 +78,9 @@ Route::post('/penyewa/{penyewaId}/payment', [\App\Http\Controllers\PenyewaContro
 Route::get('/pembayaran',[\App\Http\Controllers\PaymentController::class,'index'])->name('pembayaran.index');
 Route::get('/pembayaran/create',[\App\Http\Controllers\PaymentController::class,'create'])->name('pembayaran.create');
 Route::post('/pembayaran',[\App\Http\Controllers\PaymentController::class,'store'])->name('pembayaran.store');
-Route::post('/pembayaran/{penyewa_id}',[\App\Http\Controllers\PaymentController::class,'store'])->name('pembayaran.store');
 Route::get('/pembayaran/{id}/edit',[\App\Http\Controllers\PaymentController::class,'edit'])->name('pembayaran.edit');
 Route::put('/pembayaran/{id}',[\App\Http\Controllers\PaymentController::class,'update'])->name('pembayaran.update');
 Route::delete('/pembayaran/{id}',[\App\Http\Controllers\PaymentController::class,'destroy'])->name('pembayaran.destroy');
-Route::post('/pembayaran/store/{penyewa}', [PaymentController::class, 'store'])->name('pembayaran.store');
+
 
 Route::get('/dashboard',[\App\Http\Controllers\DashboardController::class,'index'])->name('dashboard.index');
