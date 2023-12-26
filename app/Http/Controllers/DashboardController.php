@@ -32,6 +32,15 @@ class DashboardController extends Controller
         $months = $monthlyIncomeData->pluck('month');
         $totalPayments = $monthlyIncomeData->pluck('total_payment');
         $monthlyIncome = $this->getMonthlyIncome();
+        $totalIncome = Pembayaran::getMonthlySum();
+
+        $remappedTotalIncome = array_fill(0, 12, 0);        ;
+        foreach($totalIncome as $income){
+            $monthValue = explode("-", $income->month)[0];
+
+            $remappedTotalIncome[(int)$monthValue - 1] = (int)$income->value;
+        };
+
         return view('dashboard.index', compact(
             'occupiedRoomsCount',
             'emptyRoomsCount',
@@ -42,7 +51,8 @@ class DashboardController extends Controller
             'calonpenyewas',
             'penyewas',
             'habisMasaSewa', 
-            'monthlyIncome' // Include the lastPayments variable
+            'monthlyIncome', // Include the lastPayments variable
+            'remappedTotalIncome'
         ));
     }
     private function getMonthlyIncome()

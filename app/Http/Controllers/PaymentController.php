@@ -95,7 +95,7 @@ class PaymentController extends Controller
 
 public function update(Request $request, $id)
 {
-    // Validate the request data
+try{    // Validate the request data
     $request->validate([
         'penyewa_id' => 'required',
         'tanggal_bayar' => 'required|date',
@@ -106,7 +106,7 @@ public function update(Request $request, $id)
     $pembayaran = Pembayaran::findOrFail($id);
     
     // Find the associated tenant (Penyewa)
-    $penyewa = Penyewa::findOrFail($request->penyewa_id);
+    $penyewa = Penyewa::find($request->penyewa_id);
 
     // Update the payment details
     $pembayaran->update([
@@ -136,9 +136,12 @@ public function update(Request $request, $id)
     if ($pembayaran->tanggal_bayar > $pembayaran->batas_bayar && $pembayaran->status_bayar === 'Belum Bayar') {
         $pembayaran->update(['status_bayar' => 'Telat Bayar']);
     }
-
+    
     // Redirect to the payment index with a success message
     return redirect()->route('pembayaran.index')->with('success', 'Pembayaran berhasil diupdate.');
+}catch(err){
+dd(err);
+}
 }
 
 

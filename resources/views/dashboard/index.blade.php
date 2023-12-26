@@ -165,75 +165,103 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>                        
-                        <div class="row">
-                            <div class="col-lg-6 col-md-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="card-title">Pemasukan</h4>
-                                        <canvas id="monthlyPaymentChart" width="400" height="200"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="card-title">Tabel Pemasukan Bulanan</h4>
-                                        <div class="table-responsive">
-                                            <table class="table table-striped">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Bulan</th>
-                                                        <th>Total Pemasukan</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @foreach($monthlyIncome as $month => $totalIncome)
-                                                        <tr>
-                                                            <td>{{ $month }}</td>
-                                                            <td>{{ $totalIncome }}</td>
-                                                        </tr>
-                                                    @endforeach
-                                                </tbody>
-                                            </table>
+                        </div>          
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h4 class="card-title">Tabel Pemasukan Bulanan</h4>
+                                            <canvas id="myChart"></canvas>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    
-                        
+                        </div> 
                 </div>
             </div>
         </div>
     </div>
 </div>
-    @push('scripts')
-        <script>
-            var ctx = document.getElementById('monthlyPaymentChart').getContext('2d');
-            var data = {!! json_encode($monthlyIncome) !!};
+@push('scripts')
+<script>
+    var ctx = document.getElementById('monthlyPaymentChart').getContext('2d');
+    var data = {!! json_encode($monthlyIncome) !!};
 
-            var monthlyPaymentChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: data.months,
-                    datasets: [{
-                        label: 'Total Pembayaran',
-                        data: data.totalPayments,
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        borderWidth: 1
-                    }]
+    var monthlyPaymentChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: data.months,
+            datasets: [{
+                label: 'Total Pembayaran',
+                data: data.totalPayments,
+                backgroundColor: 'rgba(75, 192, 192, 0.6)', // Adjusted transparency for a softer look
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 2
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: {
+                        borderDash: [3, 3], // Dotted grid lines for a cleaner appearance
+                    }
                 },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
+                x: {
+                    grid: {
+                        display: false // Remove x-axis grid lines for cleaner appearance
                     }
                 }
-            });
-        </script>
-    @endpush
+            },
+            plugins: {
+                legend: {
+                    display: false // Hide legend for simplicity
+                }
+            }
+        }
+    });
+</script>
+@endpush
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const chartValue = {!! json_encode($remappedTotalIncome) !!};
+    console.log(chartValue, 'chartValue');
+    const ctx = document.getElementById('myChart');
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
+            datasets: [{
+                label: 'Total Income',
+                data: chartValue,
+                backgroundColor: 'rgba(54, 162, 235, 0.6)', // Adjusted color and transparency
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 2
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: {
+                        borderDash: [3, 3], // Dotted grid lines for a cleaner appearance
+                    }
+                },
+                x: {
+                    grid: {
+                        display: false // Remove x-axis grid lines for cleaner appearance
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false // Hide legend for simplicity
+                }
+            }
+        }
+    });
+</script>
 
 @endsection

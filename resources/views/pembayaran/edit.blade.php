@@ -26,7 +26,8 @@
                     <div class="form-group">
                         <label for="penyewa_id">Penyewa:</label>
                         <input type="text" name="penyewa_id" id="penyewa_id" class="form-control"
-                               value="{{ $pembayaran->penyewa->nama }}" readonly>
+                               value="{{ $pembayaran->penyewa_id }}" hidden>
+                        <input type="text" name="penyewa_name" class="form-control" value="{{ $pembayaran->penyewa->nama }}" readonly />
                     </div>
 
                     <!-- Tanggal Bayar -->
