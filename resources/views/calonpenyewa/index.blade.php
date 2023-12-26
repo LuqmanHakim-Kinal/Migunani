@@ -34,7 +34,6 @@
                                             @endif                      
                                           </td>
                                         <td>
-                                            <a href="/calonpenyewa/{{$calonpenyewa->id}}/edit" class="btn btn-sm btn-warning">Sewa</a>
                                             <form action="/calonpenyewa/{{ $calonpenyewa->id }}" method="POST">
                                                 @method("DELETE")
                                                 @csrf
