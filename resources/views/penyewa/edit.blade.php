@@ -28,7 +28,7 @@
                   <input type="text" name="no_hp" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nomor Handphone" value ="{{$penyewa->no_hp}}">
                 </div>
                 <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Alamat</label>
+                  <label for="exampleInputEmail1" class="form-label">Alamat Asal</label>
                   <input type="text" name="alamat" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Alamat" value="{{$penyewa->alamat}}">
                 </div>
                 <div class="mb-3">

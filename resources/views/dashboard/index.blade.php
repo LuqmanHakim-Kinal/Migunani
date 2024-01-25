@@ -13,8 +13,7 @@
                                     <h3 class="card-title text-white">Kamar Terisi</h3>
                                     <div class="d-inline-block">
                                         <h2 class="text-white">{{ $occupiedRoomsCount }}</h2>
-                                    </div>
-                                    <span class="float-right display-5 opacity-5"><i class="fa fa-shopping-cart"></i></span>
+                                    </div>  
                                 </div>
                             </div>
                         </div>
@@ -25,18 +24,16 @@
                                     <div class="d-inline-block">
                                         <h2 class="text-white">{{ $emptyRoomsCount }}</h2>
                                     </div>
-                                    <span class="float-right display-5 opacity-5"><i class="fa fa-money"></i></span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-3 col-sm-6">
                             <div class="card gradient-3">
                                 <div class="card-body">
-                                    <h3 class="card-title text-white">Keluhan Belum Selesai</h3>
+                                    <h6 class="card-title text-white">Keluhan Belum Selesai</h6>
                                     <div class="d-inline-block">
                                         <h2 class="text-white">{{ $unresolvedComplaintsCount }}</h2>
                                     </div>
-                                    <span class="float-right display-5 opacity-5"><i class="fa fa-users"></i></span>
                                 </div>
                             </div>
                         </div>
@@ -47,7 +44,6 @@
                                     <div class="d-inline-block">
                                         <h2 class="text-white">{{ $belumBayarCount }}</h2>
                                     </div>
-                                    <span class="float-right display-5 opacity-5"><i class="fa fa-heart"></i></span>
                                 </div>
                             </div>
                         </div>
