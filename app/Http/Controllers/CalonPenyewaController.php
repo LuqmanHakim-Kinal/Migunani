@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Calonpenyewa;
 use App\Models\Picture;
 use App\Models\Penyewa;
+use App\Models\Kamar;
 use Illuminate\Http\Request;
 
 
@@ -14,8 +15,10 @@ class CalonPenyewaController extends Controller
     public function index()
     {
         $calonpenyewas = Calonpenyewa::all();
+        $penyewas      = Penyewa::all();
+        $kamars        = Kamar::all();
         $calonpenyewas = CalonPenyewa::paginate(10);
-        return view('calonpenyewa.index', compact('calonpenyewas'));
+        return view('calonpenyewa.index', compact('calonpenyewas','penyewas','kamars'));
     }
 
     public function create()
@@ -100,23 +103,31 @@ class CalonPenyewaController extends Controller
 
         return redirect('/calonpenyewa')->with('success', 'Data Has Been Deleted');
     }
-    public function transferCalonPenyewaToPenyewa()
+    public function transferCalonPenyewaToPenyewa(Request $request)
     {
+        $kamarId   = $request->input('kamar_id');
+        //dd($kamarId);
+        $penyewaId = $request->input('penyewa_id');
         // Ambil semua data calon penyewa
         $calonPenyewas = CalonPenyewa::all();
-
+        $kamar = Kamar::find($kamarId);
+        // $kamar->penyewa_id = $penyewaId;
         // Simpan data ke penyewas
         foreach ($calonPenyewas as $calonPenyewa) {
-            Penyewa::create([
+            $newPenyewa = Penyewa::create([
                 'nama'            => $calonPenyewa->nama,
                 'no_hp'           => $calonPenyewa->no_hp,
                 'alamat'          => 'Alamat Default',
                 'tanggal_masuk'   => $calonPenyewa->tanggal_masuk,
                 'tanggal_selesai' => now(), 
                 'dp'              => $calonPenyewa->dp,
+                'nomor_kamar'     => $kamar->nomor_kamar,
             ]);
-
+            // dd($newPenyewa->id);
             // Hapus data dari calonpenyewas setelah disimpan
+            $kamar->update([
+                'penyewa_id' => $kamar->penyewa()->associate($newPenyewa->id),
+            ]);
             $calonPenyewa->delete();
         }
 

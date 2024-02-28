@@ -30,7 +30,7 @@ Route::get('/penyewa/{id}/edit',[\App\Http\Controllers\PenyewaController::class,
 Route::put('/penyewa/{id}',[\App\Http\Controllers\PenyewaController::class,'update'])->name('penyewa.update');
 Route::delete('/penyewa/{id}',[\App\Http\Controllers\PenyewaController::class,'destroy'])->name('penyewa.show');
 Route::get('/penyewa/{id}',[\App\Http\Controllers\PenyewaController::class,'show'])->name('penyewa.show');
-
+    
 
 
 //calonPenyewa

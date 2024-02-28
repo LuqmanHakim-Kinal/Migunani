@@ -1,6 +1,35 @@
 @extends('layouts.master')
 
 @section('content')
+<div class="modal fade" id="transferDataModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Transfer Data to Penyewa</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Add your form elements for transferring data to Penyewa here -->
+                <form action="{{ route('transferCalonPenyewaToPenyewa') }}" method="post">
+                    @csrf
+                    
+                    <div class="form-group">
+                        <label for="kamar_id">Select Kamar:</label>
+                        <select name="kamar_id" class="form-control">
+                            <option value="" selected>Kamar Kosong (Isi Jika Ada Yang Sewa)</option>
+                            @foreach ($kamars as $kamar)
+                                <option value="{{ $kamar->id }}">{{ $kamar->nomor_kamar }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Transfer Data</button>
+                </form>
+            </div>            
+        </div>
+    </div>
+</div>
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
@@ -41,7 +70,9 @@
                                             </form>
                                             <form action="{{ route('transferCalonPenyewaToPenyewa') }}" method="post">
                                                 @csrf
-                                                <button type="submit" class="btn btn-primary">Transfer Data</button>
+                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#transferDataModal">
+                                                    Transfer Data
+                                                </button>
                                             </form>
                                         </td>
                                     </tr>
