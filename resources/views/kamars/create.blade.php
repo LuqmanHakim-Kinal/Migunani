@@ -24,20 +24,16 @@
                             @csrf
                             <div class="form-group">
                                 <label for="nomor_kamar">Nomor Kamar:</label>
-                                <input type="text" name="nomor_kamar" class="form-control" required pattern="[A-Za-z0-9]+">
-                                <!-- Add a pattern attribute to enforce alphanumeric characters -->
+                                <input type="text" name="nomor_kamar" class="form-control" required pattern="[A-Za-z0-9]+" minlength="2">
                             </div>
-                            <!-- Remove the status_kamar input field -->
                             <div class="form-group">
                                 <label for="harga_kamar">Harga:</label>
-                                <input type="number" name="harga_kamar" class="form-control" required min="0">
-                                <!-- Add a min attribute to enforce a non-negative value -->
+                                <input type="number" name="harga_kamar" class="form-control" required min="100000">
                             </div>
                             <div class="form-group">
                                 <label for="harga_kamar">Luas Kamar:</label>
-                                <input type="number" name="panjang_kamar" class="form-control" required min="0" placeholder="Panjang">
-                                <input type="number" name="lebar_kamar" class="form-control" required min="0" placeholder="Lebar">
-                                <!-- Add a min attribute to enforce a non-negative value -->
+                                <input type="number" name="panjang_kamar" class="form-control" required min="2" placeholder="Panjang">
+                                <input type="number" name="lebar_kamar" class="form-control" required min="2" placeholder="Lebar">
                             </div>
                             <div class="form-group">
                                 <label for="penyewa_id">Penyewa:</label>
@@ -50,7 +46,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="files">Gambar Kamar:</label>
-                                <input type="file" name="files[]" class="form-control-file" multiple>
+                                <input type="file" name="files[]" class="form-control-file" multiple required>
                             </div>
                             <button type="submit" class="btn btn-primary">Tambah Kamar</button>
                         </form>

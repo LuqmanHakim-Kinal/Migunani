@@ -13,7 +13,7 @@
                     @csrf
                     <div class="form-group">
                         <label for="judul">Judul Keluhan:</label>
-                        <input type="text" name="judul" class="form-control" required>
+                        <input type="text" name="judul" class="form-control" required minlength="4">
                     </div>
                     <div class="form-group">
                         <label for="penyewa_id">Pelapor:</label>
@@ -26,7 +26,7 @@
                     </div>
                     <div class="form-group">
                         <label for="keterangan">Keterangan:</label>
-                        <textarea name="keterangan" class="form-control">{{ old('keterangan') }}</textarea>
+                        <textarea name="keterangan" class="form-control" required minlength="8">{{ old('keterangan') }}</textarea>
                     </div>
                     <div class="form-group">
                         <label for="tanggal_pelaporan">Tanggal Pelaporan:</label>

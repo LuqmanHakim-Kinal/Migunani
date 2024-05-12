@@ -20,7 +20,7 @@
                         @csrf
                         <div class="mb-3">
                             <label for="nama" class="form-label">Nama Barang:</label>
-                            <input type="text" class="form-control"  name="nama" required>
+                            <input type="text" class="form-control"  name="nama" required minlength="4">
                         </div>
                         <div class="mb-3">
                             <label for="tanggal_beli" class="form-label">Tanggal Beli:</label>
@@ -44,7 +44,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="files" class="form-label">Foto Barang:</label>
-                            <input type="file" class="form-control-file" name="files[]" class="form-control-file" multiple">
+                            <input type="file" class="form-control-file" name="files[]" class="form-control-file" multiple" required>
                         </div>
                         <button type="submit" class="btn btn-primary">Tambah Barang</button>
                     </form>

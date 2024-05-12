@@ -24,7 +24,7 @@
                     <!-- Nama Pembayar -->
                     <div class="form-group" >
                         <label for="penyewa_id">Penyewa:</label>
-                        <select name="penyewa_id" class="form-control" >
+                        <select name="penyewa_id" class="form-control" required >
                             <option value="" selected>Penyewa</option>
                             @foreach ($penyewas as $penyewa)
                                 <option value="{{ $penyewa->id }}">{{ $penyewa->nama }}</option>
@@ -35,12 +35,12 @@
                     <!-- Tanggal Bayar -->
                     <div class="form-group">
                         <label for="tanggal_bayar">Tanggal Bayar:</label>
-                        <input type="date" name="tanggal_bayar" id="tanggal_bayar" class="form-control datepicker">
+                        <input type="date" name="tanggal_bayar" id="tanggal_bayar" class="form-control datepicker" required>
                     </div>
                     
                     <div class="form-group">
                         <label for="jumlah_bulan">Lama Sewa:</label>
-                        <input type="number" name="jumlah_bulan" id="jumlah_bulan" class="form-control" min="1">
+                        <input type="number" name="jumlah_bulan" id="jumlah_bulan" class="form-control" min="1" required>
                     </div>
                     <!-- Harga -->
                     <div class="form-group" hidden>
