@@ -86,12 +86,16 @@
                         <div class="col-xl-3 col-lg-6 col-sm-6 col-xxl-6">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">Calon Penyewa</h4>
+                                    <div class="card-title">Calon Penyewa</div>
                                     <div id="activity">
-                                        @php $count = 0; @endphp
+                                        @php
+                                            // Sort the $calonpenyewas collection by 'tanggal_masuk' field in ascending order
+                                            $calonpenyewas = $calonpenyewas->sortBy('tanggal_masuk');
+                                            $count = 0;
+                                        @endphp
+                                    
                                         @foreach ($calonpenyewas as $calonpenyewa)
                                             <div class="media border-bottom-1 pt-3 pb-3">
-                                                <!-- Assuming you have 'nama' and 'tanggal_masuk' fields in your Calonpenyewa model -->
                                                 <div class="media-body">
                                                     <h5>{{ $calonpenyewa->nama }}</h5>
                                                     <p class="mb-0">Tanggal Masuk: {{ $calonpenyewa->tanggal_masuk }}</p>
@@ -100,18 +104,22 @@
                                             @php $count++; @endphp
                                             @if ($count == 5) @break @endif
                                         @endforeach
-                                    </div>
+                                    </div>                                    
                                 </div>
                             </div>
                         </div>
                         <div class="col-xl-3 col-lg-6 col-sm-6 col-xxl-6">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">Habis Masa Sewa</h4>
+                                    <h4 class="card-title">Akan Habis Masa Sewa</h4>
                                     <div id="activity">
                                         @php $count = 0; @endphp
                                         @foreach ($penyewas as $penyewa)
-                                            @if (now()->greaterThan($penyewa->tanggal_selesai))
+                                            @php
+                                                $tanggal_selesai = \Carbon\Carbon::parse($penyewa->tanggal_selesai);
+                                                $tanggal_habis = $tanggal_selesai->subDays(7)->format('Y-m-d');
+                                            @endphp
+                                            @if (now()->greaterThan($tanggal_habis))
                                                 <div class="media border-bottom-1 pt-3 pb-3">
                                                     <div class="media-body">
                                                         <h5>{{ $penyewa->nama }}</h5>
@@ -123,7 +131,7 @@
                                                 @if ($count == 5) @break @endif
                                             @endif
                                         @endforeach
-                                    </div>
+                                    </div>                                    
                                 </div>
                             </div>
                         </div>
@@ -162,7 +170,7 @@
                                 </div>
                             </div>
                         </div>          
-                        <div class="container-fluid">
+                        <!--<div class="container-fluid">
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="card">
@@ -173,7 +181,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div> 
+                        </div> -->
                 </div>
             </div>
         </div>

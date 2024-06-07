@@ -17,10 +17,10 @@ use App\Http\Controllers\PaymentController;
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
-
+});*/
+Route::get('/',[\App\Http\Controllers\DashboardController::class,'index'])->name('dashboard.index');
 
 //Penyewa
 Route::get('/penyewa',[\App\Http\Controllers\PenyewaController::class,'index'])->name('penyewa.index');

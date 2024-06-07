@@ -18,23 +18,23 @@
             <form method="POST" action="/calonpenyewa" enctype="multipart/form-data">
                 @csrf   
                 <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Nama</label>
+                  <label for="exampleInputEmail1" class="form-label">Nama <span class="text-danger"> * </span></label>
                   <input type="text" name="nama" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nama" minlength="8" required>
                 </div>
                 <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Nomor Handphone</label>
+                  <label for="exampleInputEmail1" class="form-label">Nomor Handphone <span class="text-danger"> * </span></label>
                   <input type="text" name="no_hp" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nomor Handphone" minlength="10" required>
                 </div>
                 <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Tanggal Masuk</label>
+                  <label for="exampleInputEmail1" class="form-label">Tanggal Masuk <span class="text-danger"> * </span></label>
                   <input type="date" name="tanggal_masuk" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tanggal Masuk" required>
                 </div>
                 <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Jumlah DP</label>
+                  <label for="exampleInputEmail1" class="form-label">Jumlah DP<span class="text-danger"> * </span></label>
                   <input type="number" name="dp" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="dp" min="100000" required>
                 </div>
                 <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Foto dp</label>
+                  <label for="exampleInputEmail1" class="form-label">Foto dp <span class="text-danger"> * </span></label>
                   <input name="files[]" multiple type="file" class="form-control-file" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>

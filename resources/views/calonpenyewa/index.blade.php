@@ -20,11 +20,13 @@
                         <select name="kamar_id" class="form-control">
                             <option value="" selected>Kamar Kosong (Isi Jika Ada Yang Sewa)</option>
                             @foreach ($kamars as $kamar)
-                                <option value="{{ $kamar->id }}">{{ $kamar->nomor_kamar }}</option>
+                                @if (!$kamar->penyewa)
+                                    <option value="{{ $kamar->id }}">{{ $kamar->nomor_kamar }}</option>
+                                @endif
                             @endforeach
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-primary">Transfer Data</button>
+                    <button type="submit" class="btn btn-primary">Mulai Sewa</button>
                 </form>
             </div>            
         </div>
@@ -71,7 +73,7 @@
                                             <form action="{{ route('transferCalonPenyewaToPenyewa') }}" method="post">
                                                 @csrf
                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#transferDataModal">
-                                                    Transfer Data
+                                                    Mulai Sewa
                                                 </button>
                                             </form>
                                         </td>

@@ -16,7 +16,7 @@
                         <input type="text" name="judul" class="form-control" required minlength="4">
                     </div>
                     <div class="form-group">
-                        <label for="penyewa_id">Pelapor:</label>
+                        <label for="penyewa_id">Pelapor: <span class="text-danger"> * </span></label>
                         <select name="penyewa_id" class="form-control" required>
                             <option value="" selected>Pilih Pelapor</option>
                             @foreach ($penyewas as $penyewa)
@@ -25,11 +25,11 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="keterangan">Keterangan:</label>
+                        <label for="keterangan">Keterangan: <span class="text-danger"> * </span></label>
                         <textarea name="keterangan" class="form-control" required minlength="8">{{ old('keterangan') }}</textarea>
                     </div>
                     <div class="form-group">
-                        <label for="tanggal_pelaporan">Tanggal Pelaporan:</label>
+                        <label for="tanggal_pelaporan">Tanggal Pelaporan: <span class="text-danger"> * </span></label>
                         <input type="date" name="tanggal_pelaporan" class="form-control" required>
                     </div>
                     <button type="submit" class="btn btn-primary">Tambah Keluhan</button>

@@ -23,7 +23,7 @@
 
                     <!-- Nama Pembayar -->
                     <div class="form-group" >
-                        <label for="penyewa_id">Penyewa:</label>
+                        <label for="penyewa_id">Penyewa: <span class="text-danger"> * </span></label>
                         <select name="penyewa_id" class="form-control" required >
                             <option value="" selected>Penyewa</option>
                             @foreach ($penyewas as $penyewa)
@@ -34,12 +34,12 @@
                     
                     <!-- Tanggal Bayar -->
                     <div class="form-group">
-                        <label for="tanggal_bayar">Tanggal Bayar:</label>
+                        <label for="tanggal_bayar">Tanggal Bayar: <span class="text-danger"> * </span></label>
                         <input type="date" name="tanggal_bayar" id="tanggal_bayar" class="form-control datepicker" required>
                     </div>
                     
                     <div class="form-group">
-                        <label for="jumlah_bulan">Lama Sewa:</label>
+                        <label for="jumlah_bulan">Lama Sewa: <span class="text-danger"> * </span></label>
                         <input type="number" name="jumlah_bulan" id="jumlah_bulan" class="form-control" min="1" required>
                     </div>
                     <!-- Harga -->
@@ -50,7 +50,7 @@
 
                     <!-- File Upload -->
                     <div class="form-group">
-                        <label for="files">Foto Nota:</label>
+                        <label for="files">Foto Nota: </label>
                         <input type="file" name="files[]" class="form-control-file">
                     </div>
                     <button type="submit" class="btn btn-primary">Bayar</button>

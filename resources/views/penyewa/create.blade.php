@@ -19,7 +19,7 @@
             <form method="POST" action="/penyewa" enctype="multipart/form-data" onsubmit="return checkDates()">
                 @csrf   
                 <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Nama</label>
+                  <label for="exampleInputEmail1" class="form-label">Nama <span class="text-danger"> * </span></label>
                   <input type="text" name="nama" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nama" required minlength="8">
                 </div>
                 <div class="mb-3">
@@ -27,19 +27,19 @@
                   <input type="text" name="no_hp" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nomor Handphone" required minlength="10">
                 </div>
                 <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Alamat Asal</label>
+                  <label for="exampleInputEmail1" class="form-label">Alamat Asal <span class="text-danger"> * </span></label>
                   <input type="text" name="alamat" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Alamat" required>
                 </div>
                 <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Tanggal Masuk</label>
+                  <label for="exampleInputEmail1" class="form-label">Tanggal Masuk <span class="text-danger"> * </span></label>
                   <input type="date" name="tanggal_masuk" class="form-control" id="tanggal_masuk" aria-describedby="emailHelp" placeholder="Tanggal Masuk" required>
                 </div>
                 <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Tanggal Habis</label>
+                  <label for="exampleInputEmail1" class="form-label">Tanggal Habis <span class="text-danger"> * </span></label>
                   <input type="date" name="tanggal_selesai" class="form-control" id="tanggal_selesai" aria-describedby="emailHelp" placeholder="Tanggal Habis" required>
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputEmail1" class="form-label">Foto KTP</label>
+                  <label for="exampleInputEmail1" class="form-label">Foto KTP </label>
                   <input name="files[]" multiple type="file" class="form-control-file" >
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>

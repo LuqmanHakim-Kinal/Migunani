@@ -19,11 +19,11 @@
                     <form action="{{ route('inventaris.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
-                            <label for="nama" class="form-label">Nama Barang:</label>
+                            <label for="nama" class="form-label">Nama Barang:<span class="text-danger"> * </span></label>
                             <input type="text" class="form-control"  name="nama" required minlength="4">
                         </div>
                         <div class="mb-3">
-                            <label for="tanggal_beli" class="form-label">Tanggal Beli:</label>
+                            <label for="tanggal_beli" class="form-label">Tanggal Beli:<span class="text-danger"> * </span></label>
                             <input type="date" class="form-control" id="tanggal_beli" name="tanggal_beli" required>
                         </div>
                         <div class="mb-3">
@@ -36,14 +36,14 @@
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="kondisi" class="form-label">Kondisi:</label>
+                            <label for="kondisi" class="form-label">Kondisi: <span class="text-danger"> * </span></label>
                             <select class="form-control" id="kondisi" name="kondisi" required>
                                 <option value="Baik">Baik</option>
                                 <option value="Rusak">Rusak</option>
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="files" class="form-label">Foto Barang:</label>
+                            <label for="files" class="form-label">Foto Barang: <span class="text-danger"> * </span></label>
                             <input type="file" class="form-control-file" name="files[]" class="form-control-file" multiple" required>
                         </div>
                         <button type="submit" class="btn btn-primary">Tambah Barang</button>
