@@ -70,10 +70,10 @@ class KamarController extends Controller
 
             DB::commit();
 
-            return redirect()->route('kamars.index')->with('success', 'Room has been added successfully.');
+            return redirect()->route('inventaris.create')->with('success', 'Room has been added successfully.');
         } catch (\Exception $e) {
             DB::rollback();
-            return redirect()->route('kamars.index')->with('error', 'Error adding room. Please try again. ' . $e->getMessage());
+            return redirect()->route('inventaris.create')->with('error', 'Error adding room. Please try again. ' . $e->getMessage());
         }
     }
 
